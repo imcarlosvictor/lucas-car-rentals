@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Customer, Vehicle
+from .models import Customer, Vehicle, Employee, Rent
 
 # Register your models here.
 @admin.register(Customer)
@@ -11,7 +11,7 @@ class CustomerAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    list_display = ['emp_id', 'slug', 'super_id', 'firstname', 'lastname', 'date_of_birth', 'sex']
+    list_display = ['emp_id', 'slug', 'super_id', 'firstname', 'lastname', 'date_of_birth', 'gender']
     list_editable = ['super_id']
     prepopulated_field = {'slug': ('emp_id',)}
 
