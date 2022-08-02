@@ -5,4 +5,4 @@ def login(request):
     return render(request, 'login/login.html')
 
 def customerdashboard(request):
-    return render(request, 'rental/base.html')
+    return render(request, 'dashboard/dashboard.html')
