@@ -4,7 +4,8 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+<div>
+  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
     <!-- <h1 class="page-header">Dashboard</h1> -->
 
     <div class="row placeholders">
@@ -214,4 +215,29 @@
       </table>
     </div>
   </div>
+
+  <!-- <div class="col-sm-3 col-md-2 sidebar"> -->
+  <!--   <b-button v-b-toggle.sidebar-right>Toggle sidebar</b-button> -->
+  <!--   <b-sidebar id="sidebar-right" title="Sidebar" right shadow> -->
+  <!--     <ul> -->
+  <!--       <li class="active"><a href="#">Rent<span class="sr-only">(current)</span></a></li> -->
+  <!--       <li><a href="#">Payments</a></li> -->
+  <!--       <li><a href="#">Billing History</a></li> -->
+  <!--       <li><a href="#">Profile</a></li> -->
+  <!--     </ul> -->
+  <!--   </b-sidebar> -->
+  <!-- </div> -->
+  <div>
+    <b-button v-b-toggle.sidebar-right>Toggle Sidebar</b-button>
+    <b-sidebar id="sidebar-right" title="Sidebar" right shadow>
+      <div class="px-3 py-2">
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+        </p>
+        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
+      </div>
+    </b-sidebar>
+  </div>
+</div>
 {% endblock %}

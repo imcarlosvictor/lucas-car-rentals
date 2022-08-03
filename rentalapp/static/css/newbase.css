@@ -1,0 +1,120 @@
+:root {
+  --white: #dcdcdc;
+  --grey: #595959;
+  --lightgrey: #b7b7b7;
+  --black: #131313;
+  --purple: #aa4ff6;
+  --pink: #ea80fc;
+  --blue: #4aa0ef;
+  --red: #ff5656;
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.navbar {
+  border-radius: 0px;
+}
+
+.navbar-brand {
+  font-weight: bold;
+  color: var(--white);
+}
+
+.content {
+  margin: 3em;
+  height: 100%;
+}
+
+/* DASHBOARD */
+
+.section-title {
+  margin-top: 1.5em;
+  font-size: 40px;
+}
+
+th {
+  background-color: var(--lightgrey);
+}
+
+/* PAYMENTS */
+.content-cards {
+  display: flex;
+  
+  height: 100%;
+}
+
+.payment-detail-container {
+  background: var(--grey);
+  width: 40%;
+  height: 100%;
+  padding: 2em;
+  border-radius: 4px;
+}
+
+.payment-accept-card {
+  background: var(--lightgrey);
+  width: 100%;
+  height: 30%;
+  margin-bottom: 3em;
+  padding: 1.5em;
+  border-radius: 4px;
+}
+
+.card-list-options {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 1em;
+}
+.cards {
+  width: 100px;
+  height: 50px;
+  background-color: var(--purple);
+  border-radius: 2px;
+}
+
+.input-form { 
+  margin: .3em 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 2px;
+  border: none;
+}
+
+.input-ccv {
+  margin-right: .5em;
+}
+
+.input-exp {
+  margin-left: .5em;
+}
+
+.input-same-line {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+input {
+  padding-left: .8em;
+}
+
+#add-cta {
+  margin-top: 2em;
+  padding: .8em;
+  border: none;
+  border-radius: 3px;
+  font-size: 15px;
+  background-color: var(--purple);
+}
+
+.payment-options {
+  margin-left: 5em;
+}

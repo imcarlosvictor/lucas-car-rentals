@@ -5,4 +5,7 @@ def login(request):
     return render(request, 'login/login.html')
 
 def customerdashboard(request):
-    return render(request, 'dashboard/dashboard.html')
+    return render(request, 'customer/dashboard.html')
+
+def customerpayments(request):
+    return render(request, 'customer/payments.html')

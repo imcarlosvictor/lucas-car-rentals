@@ -52,19 +52,30 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-3 col-md-2 sidebar">
+      <!-- <div class="col-sm-3 col-md-2 sidebar">
         <ul class="nav nav-sidebar navbar-collapse collapse">
           <li class="active"><a href="#">Rent<span class="sr-only">(current)</span></a></li>
           <li><a href="#">Payments</a></li>
           <li><a href="#">Billing History</a></li>
           <li><a href="#">Profile</a></li>
         </ul>
-      </div>
-      <div>
+      </div> -->
         {% block content %}
         {% endblock %}
-      </div>
     </div>
+
+  <div>
+    <b-button v-b-toggle.sidebar-right>Toggle Sidebar</b-button>
+    <b-sidebar id="sidebar-right" title="Sidebar" right shadow>
+      <div class="px-3 py-2">
+        <p>
+          Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis
+          in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.
+        </p>
+        <b-img src="https://picsum.photos/500/500/?image=54" fluid thumbnail></b-img>
+      </div>
+    </b-sidebar>
+  </div>
   </div>
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
