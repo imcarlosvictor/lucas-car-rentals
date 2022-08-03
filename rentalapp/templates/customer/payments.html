@@ -4,18 +4,14 @@
 {% block title %}Payments{% endblock %}
 
 {% block content %}
+<div class="progress-bar">
+	<br>
+</div>
+
 <div class="content content-cards">
 	<div class="payment-detail-container">
 		<div class="payment-accept-card">
-			<p>We accept the following:</p>
-			<div class="card-list-options">
-				<div class="cards">
-				</div>
-				<div class="cards">
-				</div>
-				<div class="cards">
-				</div>
-			</div>
+			<p>Payment Methods</p>
 		</div>
 		<div class="payment-form">
 			<form>
@@ -25,19 +21,16 @@
 					<input type="text" class="input-form input-exp" placeholder="Expiry Date">
 				</div>
 				<input type="text" class="input-form" placeholder="Name on Card">
-
-				<!-- <input type="text" class="form-control" id="input-card-number" placeholder="Card Number"> -->
-				<!-- <div class="input-same-line"> -->
-				<!-- 	<input type="text" class="form-control" id="input-ccv" placeholder="CCV"> -->
-				<!-- 	<input type="text" class="form-control" id="input-expiry" placeholder="Expiry Date"> -->
-				<!-- </div> -->
-				<!-- <input type="text" class="form-control" id="input-name" placeholder="Name on card"> -->
 				<button type="button" id="add-cta">Add Payment</button>
 			</form>
 		</div>
 	</div>
+
 	<div class="payment-options">
-		<p>hello</p>
+		<ul class="list-payment-options">
+			<li><label class="checkbox-payment-options"><input type="radio" value="card-option-1"><span class="payment-option-text">Payment Option 1</span></label></li>
+			<li><label class="checkbox-payment-options"><input type="radio" value="card-option-2"><span class="payment-option-text">Payment Option 2</span></label></li>
+		</ul>
 	</div>
 </div>
 {% endblock %}

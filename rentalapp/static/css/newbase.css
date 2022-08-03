@@ -17,6 +17,7 @@ html {
 body {
   width: 100%;
   height: 100%;
+  background-color: var(--black);
 }
 
 .navbar {
@@ -47,12 +48,12 @@ th {
 /* PAYMENTS */
 .content-cards {
   display: flex;
-
+  justify-content: space-around;
   height: 100%;
 }
 
 .payment-detail-container {
-  background: var(--grey);
+  background: var(--white);
   width: 40%;
   height: 100%;
   padding: 2em;
@@ -76,7 +77,7 @@ th {
 
 .cards {
   width: 100px;
-  height: 50px;
+  height: 80px;
   background-color: var(--purple);
   border-radius: 2px;
 }
@@ -117,5 +118,25 @@ input {
 }
 
 .payment-options {
-  margin-left: 5em;
+  display: flexbox;
+  padding: 2em;
+  border-radius: 3px;
+  background-color: var(--lightgrey);
+  height: 50%;
 }
+
+.list-payment-options {
+  padding-left: 0;
+  display: grid;
+  align-content: center;
+}
+
+.list-payment-options li {
+  list-style: none;
+  margin: 1em 0;
+}
+
+.payment-option-text {
+  padding-left: 1em;
+}
+
