@@ -47,7 +47,7 @@ th {
 /* PAYMENTS */
 .content-cards {
   display: flex;
-  
+
   height: 100%;
 }
 
@@ -73,6 +73,7 @@ th {
   justify-content: space-around;
   margin: 0 1em;
 }
+
 .cards {
   width: 100px;
   height: 50px;
@@ -80,7 +81,7 @@ th {
   border-radius: 2px;
 }
 
-.input-form { 
+.input-form {
   margin: .3em 0;
   width: 100%;
   height: 40px;
