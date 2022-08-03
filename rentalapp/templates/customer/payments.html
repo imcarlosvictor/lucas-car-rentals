@@ -4,33 +4,38 @@
 {% block title %}Payments{% endblock %}
 
 {% block content %}
-<div class="progress-bar">
-	<br>
-</div>
-
-<div class="content content-cards">
-	<div class="payment-detail-container">
-		<div class="payment-accept-card">
-			<p>Payment Methods</p>
-		</div>
-		<div class="payment-form">
-			<form>
-				<input type="text" class="input-form" placeholder="Card Number">
-				<div class="input-same-line">
-					<input type="text" class="input-form input-ccv" placeholder="CCV">
-					<input type="text" class="input-form input-exp" placeholder="Expiry Date">
-				</div>
-				<input type="text" class="input-form" placeholder="Name on Card">
-				<button type="button" id="add-cta">Add Payment</button>
-			</form>
-		</div>
+<div class="content">
+	<div class="progress-bar">
+		<p>Hello[]</p>
 	</div>
 
-	<div class="payment-options">
-		<ul class="list-payment-options">
-			<li><label class="checkbox-payment-options"><input type="radio" value="card-option-1"><span class="payment-option-text">Payment Option 1</span></label></li>
-			<li><label class="checkbox-payment-options"><input type="radio" value="card-option-2"><span class="payment-option-text">Payment Option 2</span></label></li>
-		</ul>
+	<div class="content-cards">
+		<div class="payment-detail-container">
+			<div class="payment-accept-card headers">
+				<p>Payment Methods</p>
+			</div>
+			<div class="payment-form">
+				<form>
+					<input type="text" class="input-form" placeholder="Card Number">
+					<div class="input-same-line">
+						<input type="text" class="input-form input-ccv" placeholder="CCV">
+						<input type="text" class="input-form input-exp" placeholder="Expiry Date">
+					</div>
+					<input type="text" class="input-form" placeholder="Name on Card">
+					<button type="button" id="add-cta">Add Payment</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="payment-options">
+			<div class="payment-option headers">
+				<p>Payment Options</p>
+			</div>
+			<ul class="list-payment-options">
+				<li><label class="checkbox-payment-options"><input type="radio" value="card-option-1"><a href="#" class="payment-option-text">Payment Option 1</a></label></li>
+				<li><label class="checkbox-payment-options"><input type="radio" value="card-option-1"><a href="#" class="payment-option-text">Payment Option 2</a></label></li>
+			</ul>
+		</div>
 	</div>
 </div>
 {% endblock %}
