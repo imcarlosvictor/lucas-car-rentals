@@ -85,8 +85,10 @@ th {
 }
 
 .payment-form {
+  margin-top: 1em;
   padding: 1em 3em 2em 3em;
 }
+
 
 .card-list-options {
   display: flex;
@@ -109,18 +111,17 @@ th {
   border: none;
 }
 
-.input-ccv {
+.input-left {
   margin-right: .5em;
 }
 
-.input-exp {
+.input-right {
   margin-left: .5em;
 }
 
 .input-same-line {
   display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 
 input {

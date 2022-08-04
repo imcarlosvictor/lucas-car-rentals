@@ -1,0 +1,52 @@
+{% extends "customer/base.html" %}
+{% load static %}
+
+{% block title %}Billing{% endblock %}
+
+{% block content %}
+<div class="content">
+	<p class="section-title">Billing History</p>
+	<table class="table table-hover">
+		<tr>
+			<th>Id</th>
+			<th>Transaction Date</th>
+			<th>Customer Name</th>
+			<th>Car</th>
+			<th>Pickup Date</th>
+			<th>Return Date</th>
+			<th>Amount</th>
+			<th>Status</th>
+		</tr>
+		<!-- {% for product in products %} -->
+		<!-- 	<tr> -->
+		<!-- 		<td>{{ product.model }}</td> -->
+		<!-- 		<td>{{ product.manufacturer }}</td> -->
+		<!-- 		<td>{{ product.colour }}</td> -->
+		<!-- 		<td>{{ product.body }}</td> -->
+		<!-- 		<td>{{ product.fuel }}</td> -->
+		<!-- 		<td>{{ product.condition }}</td> -->
+		<!-- 		<td>{{ product.status }}</td> -->
+		<!-- 	</tr> -->
+		<!-- {% endfor %} -->
+		
+		<tr>
+			<td>123019</td>
+			<td>07/03/22</td>
+			<td>Lucas Torres</td>
+			<td>Tucson</td>
+			<td>07/13/22</td>
+			<td>08/15/22</td>
+			<td>$500.00</td>
+			<td>Active</td>
+		</tr>
+		<tr>
+			<td>128509</td>
+			<td>06/03/22</td>
+			<td>Lucas Torres</td>
+			<td>Journey</td>
+			<td>06/13/22</td>
+			<td>07/15/22</td>
+			<td>$500.00</td>
+			<td>Closed</td>
+		</tr>
+{% endblock %}
