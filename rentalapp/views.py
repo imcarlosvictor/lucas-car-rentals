@@ -4,8 +4,8 @@ from django.shortcuts import render
 def login(request):
     return render(request, 'login/login.html')
 
-def dashboard(request):
-    return render(request, 'customer/dashboard.html')
+def rentals(request):
+    return render(request, 'customer/rentals.html')
 
 def payments(request):
     return render(request, 'customer/payments.html')
