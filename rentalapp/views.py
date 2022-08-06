@@ -1,17 +1,38 @@
 from django.shortcuts import render
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
-def login(request):
-    return render(request, 'login/login.html')
+from .models import *
+from .forms import CreateUserForm
 
-def rentals(request):
-    return render(request, 'customer/rentals.html')
 
-def payments(request):
-    return render(request, 'customer/payments.html')
+def loginPage(request):
+    context = {}
+    return render(request, 'customer/accounts/login.html')
 
-def billing(request):
-    return render(request, 'customer/billing.html')
+def registerPage(request):
+    form = CreateUserForm()
 
-def profile(request):
-    return render(request, 'customer/profile.html')
+    if request.method == 'POST':
+        form = CreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+
+    context = {'form': form}
+    return render(request, 'customer/accounts/register.html', context)
+
+def rentalPage(request):
+    context = {}
+    return render(request, 'customer/dashboard/rentals.html')
+
+def paymentPage(request):
+    context = {}
+    return render(request, 'customer/dashboard/payments.html')
+
+def billingPage(request):
+    context = {}
+    return render(request, 'customer/dashboard/billing.html')
+
+def profilePage(request):
+    context = {}
+    return render(request, 'customer/dashboard/profile.html')

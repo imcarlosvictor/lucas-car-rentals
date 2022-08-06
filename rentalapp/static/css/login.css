@@ -16,29 +16,30 @@ html {
 
 body {
 	width: 100%;
-	min-height: 500px;
-	max-height: 500px;
 	display: grid:
 	justify-content: center;
 	align-content: center;
 	background: #131313;
-	padding: 1em;
+	padding: 2em 1em;
 }
 
-#login-card {
+#account-card {
 	display: grid;
 	justify-content: center;
 	align-items: center;
-	color: #f1f1f1;
 	width: 100%;
 	height: 100%;
 }
 
-p {
+#account-card-content {
+	width: 100%;
+}
+
+.card-title {
+	color: #f1f1f1;
 	text-align: center;
-	font-size: 50px;
-	margin: .5em 1em 2em 1em;
-	margin-bottom: 2em;
+	font-size: 45px;
+	margin: .5em 1em 1em 1em;
 }
 
 form {
@@ -46,7 +47,7 @@ form {
 	flex-direction: column;
 }
 
-input, button {
+input  {
 	margin: 10px 0;
 	width: 100%;
 	height: 30px;
@@ -61,8 +62,8 @@ input:focus {
 	border: solid 1px #aa4ff6;
 }
 
-button {
-	margin-top: 2em;
+.account-cta {
+	margin-top: .8em;
 	width: 100%;
 	height: 50px;
 	font-size: 20px;

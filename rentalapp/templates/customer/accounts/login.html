@@ -1,0 +1,18 @@
+{% extends "customer/accounts/base_login.html" %}
+{% load static %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+	<div id="account-card">
+		<p class="card-title">User Login</p>
+		<div class="login-form">
+			<form method="POST" action="">
+				<input id="email" type="text" name="email" placeholder="Email">
+				<input id="password" type="text" name="password" placeholder="Password">
+				<input type="submit" name="login" value="Login" class="account-cta">
+			</form>
+		</div>	
+	</div>
+{% endblock %}

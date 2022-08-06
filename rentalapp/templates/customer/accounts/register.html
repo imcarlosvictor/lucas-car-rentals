@@ -1,0 +1,20 @@
+{% extends "customer/accounts/base_login.html" %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<div id="account-card">
+	<p class="card-title">New Account</p>
+	<div class="login-form">
+		<form method="POST" action="">
+			{% csrf_token %}
+			{% for field in form  %}
+				{{ field.label }}
+				{{ field }}
+			{% endfor %}
+			<input type="submit" name="create-account" value="Create Account" class="account-cta">
+		</form>
+	</div>
+</div>
+{% endblock %}

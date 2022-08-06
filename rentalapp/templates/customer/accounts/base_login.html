@@ -1,0 +1,13 @@
+{% load static %}
+<!DOCTYPE HTML>
+
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<link href="{% static "css/login.css" %}" rel="stylesheet">
+</head>
+
+<body>
+ {% block content %}
+ {% endblock %}
+</body>
