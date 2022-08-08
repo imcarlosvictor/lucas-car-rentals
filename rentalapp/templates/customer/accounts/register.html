@@ -7,7 +7,6 @@
 	<div id="account-card">
 		<p class="card-title">New Account</p>
 		<div class="login-form">
-			{{form.errors}}
 			<form method="POST" action="">
 				{% csrf_token %}
 				{% for field in form  %}
@@ -17,7 +16,7 @@
 			</form>
 		</div>
 		<div class="account-redirect">
-			<p class="account-info">Already have an account? <a href="">Sign In</a></p>
+			<p class="account-info">Already have an account? <a href="{% url 'rentalapp:login' %}">Sign In</a></p>
 		</div>
 	</div>
 

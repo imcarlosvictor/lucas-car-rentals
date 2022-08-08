@@ -20,7 +20,7 @@ body {
 	justify-content: center;
 	align-content: center;
 	background: #131313;
-	padding: 2em 1em;
+	padding: 2em;
 }
 
 #account-card {
@@ -87,4 +87,9 @@ button:hover {
 
 .account-info a {
 	color: #aa4ff6;
+}
+
+#messages {
+	padding: .5em;
+	border-radius: 2px;
 }
