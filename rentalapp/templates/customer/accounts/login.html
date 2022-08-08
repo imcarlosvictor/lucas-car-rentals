@@ -1,7 +1,6 @@
 {% extends "customer/accounts/base_login.html" %}
 {% load static %}
 
-
 {% block title %}Login{% endblock %}
 
 {% block content %}
@@ -14,5 +13,8 @@
 				<input type="submit" name="login" value="Login" class="account-cta">
 			</form>
 		</div>	
+		<div class="account-redirect">
+			<p class="account-info">Don't have an account? <a href="">Sign Up</a></p>
+		</div>
 	</div>
 {% endblock %}

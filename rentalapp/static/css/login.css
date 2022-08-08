@@ -75,3 +75,16 @@ button:hover {
 	background: rgba(170,79,246,0.8);
 	border: none;
 }
+
+.account-redirect {
+	text-align: center;
+	font-size: 15px;
+}
+
+.account-info {
+	color: #f3f3f3; 
+}
+
+.account-info a {
+	color: #aa4ff6;
+}
