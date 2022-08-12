@@ -4,14 +4,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout, get_user_model
 
 from .models import *
-from .forms import CreateUserForm
+from .forms import UserCreationForm
 
 
 # Create your views here.
 def registerPage(request):
-    form = CreateUserForm()
+    form = UserCreationForm(request.POST or None)
     if request.method == 'POST':
-        form = CreateUserForm(request.POST)
+        # form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             # username = form.cleaned_data.get('username')
