@@ -11,8 +11,9 @@
 				<p class="bg-primary" id="messages">{{message}}</p>
 			{% endfor %}
 			<form method="POST" action="">
-				<input id="email" type="text" name="email" placeholder="Email">
-				<input id="password" type="text" name="password" placeholder="Password">
+				{% csrf_token %}
+				<input type="email" name="email" placeholder="Email" class="form-control">
+				<input type="password" name="password" placeholder="Password" class="form-control">
 				<input type="submit" name="login" value="Login" class="account-cta">
 			</form>
 		</div>	
