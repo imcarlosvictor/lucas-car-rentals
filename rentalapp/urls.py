@@ -5,8 +5,10 @@ from . import views
 
 app_name = 'rentalapp'
 urlpatterns = [
-    path('login/', views.loginPage, name='login'),
     path('register/', views.registerPage, name='register'),
+    path('login/', views.loginPage, name='login'),
+    path('logout/', views.logoutUser, name='logout'),
+
     path('rentals/', views.rentalPage, name='rentals'),
     path('payments/', views.paymentPage, name='payments'),
     path('billing/', views.billingPage, name='billing'),

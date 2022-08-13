@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate, login, logout
 
 from .models import *
 from .forms import UserCreationForm
@@ -36,6 +36,10 @@ def loginPage(request):
 
     context = {}
     return render(request, 'customer/accounts/login.html')
+
+def logoutUser(request):
+    logout(request)
+    return redirect('rentalapp:login')
 
 def rentalPage(request):
     context = {}
