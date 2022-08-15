@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -29,7 +29,7 @@ def loginPage(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('rentalapp:rentals')
+            return redirect('rentalapp:products')
         else:
             messages.error(request, 'Email or password is incorrect')
             return render(request, 'customer/accounts/login.html')
@@ -41,9 +41,22 @@ def logoutUser(request):
     logout(request)
     return redirect('rentalapp:login')
 
-def rentalPage(request):
-    context = {}
-    return render(request, 'customer/dashboard/rentals.html')
+def productPage(request, category_slug=None):
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.all()
+    if category_slug:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = product.filter(category=category)
+
+    context = {'category': category, 'categories': categories, 'products': products}
+    return render(request, 'customer/dashboard/products.html')
+
+def product_detail(request, id, slug):
+    product = get_object_or_404(Product, id=id, slug=slug, available=True)
+
+    context = {'product': product}
+    return render(request, 'customer/dashboard/detail.html', context)
 
 def paymentPage(request):
     context = {}

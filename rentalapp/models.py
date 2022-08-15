@@ -62,28 +62,51 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'MyUsers'
 
 
-class Vehicle(models.Model):
+class Category(models.Model):
+    name = models.CharField(max_length=200, db_index=True)
+    slug = models.SlugField(max_length=200, unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'category'
+        verbose_name_plural = 'categories'
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('rentalapp:product_list_by_category', args=[self.slug])
+
+class Product(models.Model):
     FUEL_TYPE_CHOICES = (
         ('Gas', 'Gas'),
         ('Electric', 'Electric'),
         ('Hybrid', 'Hybrid'),
     )
-    VEHICLE_CONDITION_CHOICES = (
-        ('Bad', 'Bad'),
-        ('Fair', 'Fair'),
-        ('Good', 'Good'),
-        ('Brand New', 'Brand New'),
-    )
+    category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
     id = models.AutoField(primary_key=True)
     slug = models.SlugField(max_length=200)
-    model = models.CharField(max_length=200)
-    brand = models.CharField(max_length=200)
+    model = models.CharField(max_length=200, db_index=True)
+    brand = models.CharField(max_length=200, db_index=True)
     color = models.CharField(max_length=200)
-    dimensions = models.CharField(max_length=200)
+    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    description = models.TextField(blank=True)
+    price = models.DecimalField(max_digits=20, decimal_places=2)
     capacity = models.CharField(max_length=200)
     fuel_type = models.CharField(max_length=20, choices=FUEL_TYPE_CHOICES)
-    vehicle_condition = models.CharField(max_length=20, choices=VEHICLE_CONDITION_CHOICES)
-    available = models.BooleanField()
+    available = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ('model',)
+        index_together = (('id', 'slug'))
+
+    def __str__(self):
+        return self.brand + " " + self.model
+
+    def get_absolute_url(self):
+        return reverse('rentalapp:product_detail', args=[self.id, self.slug])
 
 
 class Rent(models.Model):
@@ -96,7 +119,7 @@ class Rent(models.Model):
     pickup_date = models.DateField()
     return_date = models.DateField()
     user_id = models.ForeignKey('MyUser', on_delete=models.CASCADE)
-    vehicle_id = models.ForeignKey('Vehicle', on_delete=models.CASCADE)
+    vehicle_id = models.ForeignKey('Product', on_delete=models.CASCADE)
     rental_amount = models.DecimalField(max_digits=9, decimal_places=2)
     rental_status = models.CharField(max_length=20, choices=RENTAL_STATUS_CHOICES)
 

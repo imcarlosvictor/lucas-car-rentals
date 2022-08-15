@@ -1,0 +1,26 @@
+{% extends 'customer/base.html' %}
+{% load static %}
+
+{% block title %}
+	{% if category %}{{category.name}}{% else %}Products{% endif %}
+{% endblock %}
+
+{% block content %}
+	<div class="product-detail">
+		<img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/no_image.png" %}{% endif %}">
+		<div class="headers">
+			<h1>{{product.model}}</h1>
+			<p {% if product.available %}class="available"{% else %}class="unavailable"{% endif %}>{% if product.available %}Available{% else %}Unavailable{% endif %}</p>
+		</div>
+		<p class="price">${{product.price}}</p>
+		{{ product.description|linebreaks }}
+		<p class="product-details">Product Details:</p>
+		<ul>
+			<li>Model: {{product.model}}</li>
+			<li>Manufacturer: {{product.brand}}</li>
+			<li>Color: {{product.color}}</li>
+			<li>Capacity: {{product.capacity}}</li>
+			<li>Fuel Type: {{product.fuel_type}}</li>
+		</ul>
+	</div>
+{% endblock %}
