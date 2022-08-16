@@ -2,25 +2,28 @@
 {% load static %}
 
 {% block title %}
-	{% if category %}{{category.name}}{% else %}Products{% endif %}
+	{{product.model}}
 {% endblock %}
 
 {% block content %}
-	<div class="product-detail">
-		<img src="{% if product.image %}{{product.image.url}}{% else %}{% static "img/no_image.png" %}{% endif %}">
-		<div class="headers">
-			<h1>{{product.model}}</h1>
-			<p {% if product.available %}class="available"{% else %}class="unavailable"{% endif %}>{% if product.available %}Available{% else %}Unavailable{% endif %}</p>
+<div class="content">
+	<div class="product-detail-content">
+		<img src="{% if product.image %}{{product.image.url}}{% else %}{% static "media/images/icon-no-image.svg" %}{% endif %}" class="product-img">
+		<div class="product-view">
+			<div class="product-header">
+				<p class="product-model">{{product.brand}} {{product.model}}</p>
+			<p {% if product.available %}id="available"{% else %}id="unavailable"{% endif %}>{% if product.available %}Available{% else %}Unavailable{% endif %}</p>
+			</div>
+			<p class="product-price">${{product.price}}</p>
+			<p class="product-description">{{ product.description|linebreaks }}</p>
+			<ul class="product-details">
+				<li><span class="detail">Model:</span> {{product.model}}</li>
+				<li><span class="detail">Manufacturer:</span> {{product.brand}}</li>
+				<li><span class="detail">Color:</span> {{product.color}}</li>
+				<li><span class="detail">Capacity:</span> {{product.capacity}}</li>
+				<li><span class="detail">Fuel Type:</span> {{product.fuel_type}}</li>
+			</ul>
 		</div>
-		<p class="price">${{product.price}}</p>
-		{{ product.description|linebreaks }}
-		<p class="product-details">Product Details:</p>
-		<ul>
-			<li>Model: {{product.model}}</li>
-			<li>Manufacturer: {{product.brand}}</li>
-			<li>Color: {{product.color}}</li>
-			<li>Capacity: {{product.capacity}}</li>
-			<li>Fuel Type: {{product.fuel_type}}</li>
-		</ul>
 	</div>
+</div>
 {% endblock %}

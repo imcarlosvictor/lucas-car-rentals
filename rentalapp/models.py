@@ -77,6 +77,7 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('rentalapp:product_list_by_category', args=[self.slug])
 
+
 class Product(models.Model):
     FUEL_TYPE_CHOICES = (
         ('Gas', 'Gas'),
@@ -89,7 +90,7 @@ class Product(models.Model):
     model = models.CharField(max_length=200, db_index=True)
     brand = models.CharField(max_length=200, db_index=True)
     color = models.CharField(max_length=200)
-    image = models.ImageField(upload_to='products/%Y/%m/%d', blank=True)
+    image = models.ImageField(upload_to='static/media/images/', blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=20, decimal_places=2)
     capacity = models.CharField(max_length=200)
