@@ -50,7 +50,7 @@ def productPage(request, category_slug=None):
         products = product.filter(category=category)
 
     context = {'category': category, 'categories': categories, 'products': products}
-    return render(request, 'customer/dashboard/products.html')
+    return render(request, 'customer/dashboard/products.html', context)
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug)

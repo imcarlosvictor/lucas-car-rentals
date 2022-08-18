@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser, AbstractBaseUser, BaseUserManager, PermissionsMixin
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class CustomUserManager(BaseUserManager):
@@ -107,7 +108,7 @@ class Product(models.Model):
         return self.brand + " " + self.model
 
     def get_absolute_url(self):
-        return reverse('rentalapp:product_detail', args=[self.id, self.slug])
+        return reverse('rentalapp:product_detail', kwargs={'id': self.id, 'slug': self.slug})
 
 
 class Rent(models.Model):

@@ -26,6 +26,9 @@ body {
   background-color: var(--black);
 }
 
+/* ---------------------------------------------------------------------------------------- */
+/* NAVBAR */
+/* ---------------------------------------------------------------------------------------- */
 .navbar {
   border-radius: 0px;
 }
@@ -48,8 +51,9 @@ body {
   height: 100%;
 }
 
+/* ---------------------------------------------------------------------------------------- */
 /* DASHBOARD */
-
+/* ---------------------------------------------------------------------------------------- */
 .section-title {
   margin-top: 1.5em;
   font-size: 40px;
@@ -57,20 +61,29 @@ body {
 }
 
 th {
-  background-color: var(--lightgrey);
+  background-color: var(--grey);
+  color: var(--white);
+  border-bottom: 1px solid var(--white);
 }
 
 .th {
   text-align: center;
 }
 
-td {
-  color: var(--black);
-  background-color: var(--headergrey);
+.product, .billing-items{
+  background-color: var(--bordergrey);
+}
+
+.product td {
+  /* color: var(--black); */
+  /* background-color: var(--lightgrey); */
   text-align: center;
 }
 
+
+/* ---------------------------------------------------------------------------------------- */
 /* PAYMENTS */
+/* ---------------------------------------------------------------------------------------- */
 .progress-bar {
   width: 50%:
   height: 3px;
@@ -202,8 +215,9 @@ input {
   padding-left: 1em;
 }
 
-
+/* ---------------------------------------------------------------------------------------- */
 /* PRODUCT DETAIL */
+/* ---------------------------------------------------------------------------------------- */
 .product-detail-content {
   width: 100%;
   height: 100%;
