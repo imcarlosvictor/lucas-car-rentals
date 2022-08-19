@@ -45,14 +45,23 @@ def logoutUser(request):
 def productPage(request, category_slug=None):
     category = None
     categories = Category.objects.all()
-    products = Product.objects.all()
+    product_list = Product.objects.all()
     if category_slug:
         category = get_object_or_404(Category, slug=category_slug)
-        products = product.filter(category=category)
+        product_list = product.filter(category=category)
 
     # Pagination
-    paginator = Paginator(products, 10) # 10 products in each page
-    page = request.GET.get('page')
+    paginator = Paginator(product_list, 10) # 10 products in each page
+    page_number = request.GET.get('page')
+    try:
+        products = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        products = paginator.get_page(1)
+    except EmptyPage:
+        # If page is out of range devliver last page of results
+        products = paginator.get_page(paginator.num_pages)
+
     context = {'category': category, 'categories': categories, 'products': products}
     return render(request, 'customer/dashboard/products.html', context)
 

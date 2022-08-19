@@ -29,15 +29,20 @@
 			</tr>
 		{% endfor %}
 	</table>
+
+	<div class="pagination">
+		<span class="step-links">
+			{% if products.has_previous %}
+				<a href="?page={{ products.previous_page_number }}">Prev</a>
+			{% endif %}
+			<span class="current">
+				Page {{ products.number }} of {{ products.paginator.num_pages }}.
+			</span>
+			{% if products.has_next %}
+			<a href="?page={{ products.next_page_number }}">Next</a>
+			{% endif %}
+		</span>
+	</div>
 </div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function () {
-		$(document.body).on("click", "tr[data-gref]", function() {
-			window.location.href = this.dataset.href;
-		})
-	})
-</script>
 {% endblock %}
