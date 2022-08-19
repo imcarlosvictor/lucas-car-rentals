@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
 from .forms import UserCreationForm
@@ -49,6 +50,9 @@ def productPage(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = product.filter(category=category)
 
+    # Pagination
+    paginator = Paginator(products, 10) # 10 products in each page
+    page = request.GET.get('page')
     context = {'category': category, 'categories': categories, 'products': products}
     return render(request, 'customer/dashboard/products.html', context)
 

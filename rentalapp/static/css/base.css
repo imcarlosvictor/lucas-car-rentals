@@ -80,9 +80,11 @@ th {
   background-color: var(--bordergrey);
 }
 
+.product:hover {
+  cursor: pointer;
+}
+
 .product td {
-  /* color: var(--black); */
-  /* background-color: var(--lightgrey); */
   text-align: center;
 }
 
