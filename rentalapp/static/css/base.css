@@ -5,11 +5,12 @@
   --headergrey: #f3f3f3;
   --bordergrey: #d9d9d9;
   --black: #131313;
-  --purple: #aa4ff6;
+  /* --purple: #aa4ff6; */
   --pink: #ea80fc;
   --blue: #4aa0ef;
   --red: #ff5656;
   --green: #00eb00;
+  --dark-green: #008678;
 }
 
 html {
@@ -43,7 +44,7 @@ body {
 #brand {
   padding: .8em 2em;
   font-weight: bold;
-  color: var(--purple);
+  color: var(--dark-green);
 }
 
 .content {
@@ -60,10 +61,15 @@ body {
   color: var(--white);
 }
 
+table {
+  border-top: solid 2px var(--dark-green);
+  border-bottom: solid 2px var(--dark-green);
+}
+
 th {
-  background-color: var(--grey);
-  color: var(--white);
-  border-bottom: 1px solid var(--white);
+  background-color: var(--dark-green);
+  color: var(--black);
+  border-bottom: 1px solid var(--dark-green);
 }
 
 .th {
@@ -87,7 +93,7 @@ th {
 .progress-bar {
   width: 50%:
   height: 3px;
-  background: var(--purple);
+  background: var(--dark-green);
 }
 
 .content-cards {
@@ -135,7 +141,7 @@ th {
 .cards {
   width: 100px;
   height: 80px;
-  background-color: var(--purple);
+  background-color: var(--dark-green);
   border-radius: 2px;
 }
 
@@ -171,7 +177,7 @@ input {
   border: none;
   border-radius: 3px;
   font-size: 15px;
-  background-color: var(--purple);
+  background-color: var(--dark-green);
   color: var(--white);
 }
 
