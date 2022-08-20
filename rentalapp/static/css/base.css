@@ -88,9 +88,20 @@ th {
   text-align: center;
 }
 
+.pagination-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
 .pagination {
-  color: var(--black);
-  background: var(--white);
+  color: var(--white);
+}
+
+.pagination-btn {
+  padding: .2em .7em;
+  background: var(--dark-green);
+  color: var(--white);
 }
 /* ---------------------------------------------------------------------------------------- */
 /* PAYMENTS */
