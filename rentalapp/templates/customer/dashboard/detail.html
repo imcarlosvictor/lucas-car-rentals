@@ -12,7 +12,7 @@
 		<div class="product-view">
 			<div class="product-header">
 				<p class="product-model">{{product.brand}} {{product.model}}</p>
-			<p {% if product.available %}id="available"{% else %}id="unavailable"{% endif %}>{% if product.available %}Available{% else %}Unavailable{% endif %}</p>
+			<button type="button" {% if product.available %}id="available-btn"{% else %}id="unavailable-btn"{% endif %}>{% if product.available %}Rent{% else %}Unavailable{% endif %}</button>
 			</div>
 			<p class="product-price">${{product.price}}</p>
 			<p class="product-description">{{ product.description|linebreaks }}</p>

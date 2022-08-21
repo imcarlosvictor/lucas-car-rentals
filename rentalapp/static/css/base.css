@@ -274,23 +274,35 @@ input {
   margin: .3em 0 1.5em;
 }
 
-#available {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  color: var(--green);
-  font-size: 20px;
+#available-btn {
+  color: var(--white);
+  background: var(--blue);
 }
 
-#unavailable {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  color: var(--red);
-  font-size: 20px;
+#unavailable-btn {
+  color: var(--white);
+  background: var(--red);
 }
 
-.product-price {
+#available-btn, #unavailable-btn {
+  margin: 0;
+  padding: .5em;
+  min-width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  border: 0;
+}
+
+#available-btn:hover  {
+  background-color: rgba(74,164,239,0.7);
+  color: rgba(254,254,254, 0.7);
+}
+
+#unavailable-btn:hover {
+  background-color: rgba(255,86,86,0.7);
+  color: rgba(254,254,254, 0.7);
 }
 
 .product-description, .product-details{ 
