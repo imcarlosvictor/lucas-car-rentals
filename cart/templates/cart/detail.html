@@ -12,10 +12,10 @@
 				<tr>
 					<th>Image</th>
 					<th>Product</th>
+					<th>Brand</th>
 					<th>Quantity</th>
 					<th>Remove</th>
 					<th>Unit Price</th>
-					<th>Price</th>
 				</tr>
 			</thead>
 			
@@ -26,16 +26,16 @@
 						<td>
 								<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "media/img/icon-no-image.svg" %}{% endif %}" id="shopping-cart-image">
 						</td>
-						<td><a href="{{ product.get_absolute_url }}">{{ product.model }}</a></td>
+						<td><a href="{{ product.get_absolute_url }}" class="product-url">{{ product.model }}</a></td>
+						<td>{{ item.brand }}</td>
 						<td>{{ item.quantity }}</td>
 						<td>
 							<form action="{% url "cart:cart_remove" product.id %}" method="post">
-								<input type="submit" value="Remove">
+								<input type="submit" value="Remove" class="remove-btn">
 								{% csrf_token %}
 							</form>
 						</td>
 						<td class="num">${{ item.price }}</td>
-						<td class="num">${{ item.total_price }}</td>
 					</tr>
 					{% endwith %}
 				{% endfor %}
@@ -47,8 +47,8 @@
 			</tbody>
 		</table>
 		<p class="text-right">
-			<a href="{% url "rentalapp:products" %}" class="buttonlight">Continue shopping</a>
-			<a href="#" class="button">Checkout</a>
+			<a href="{% url "rentalapp:products" %}" class="buttonlight continue-btn cart-btn">Continue shopping</a>
+			<a href="#" class="button checkout-btn cart-btn">Checkout</a>
 		</p>
 	</div>
 </div>
