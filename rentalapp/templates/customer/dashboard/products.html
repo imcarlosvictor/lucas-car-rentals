@@ -7,16 +7,19 @@
 <div class="content">
 	<p class="section-title">Rentals</p>
 	<table class="table table-hover">
-		<tr>
-			<th class="th">Model</th>
-			<th class="th">Brand</th>
-			<th class="th">Color</th>
-			<th class="th">Capacity</th>
-			<th class="th">Fuel Type</th>
-			<th class="th">Available</th>
-			<th class="th">Price</th>
-		</tr>
+		<thead>
+			<tr>
+				<th class="th">Model</th>
+				<th class="th">Brand</th>
+				<th class="th">Color</th>
+				<th class="th">Capacity</th>
+				<th class="th">Fuel Type</th>
+				<th class="th">Available</th>
+				<th class="th">Price</th>
+			</tr>
+		</thead>
 
+		<tbody>
 		{% for product in products %}
 			<tr class="product" data-href="{{product.get_absolute_url}}">
 				<td>{{ product.model }}</a></td>
@@ -28,6 +31,7 @@
 				<td>{{ product.price }}</td>
 			</tr>
 		{% endfor %}
+		</tbody>
 	</table>
 
 	<div class="pagination-container">

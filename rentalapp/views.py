@@ -6,6 +6,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
 from .forms import UserCreationForm
+from cart.forms import CartAddProductForm
 
 
 # Create your views here.
@@ -67,8 +68,9 @@ def productPage(request, category_slug=None):
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug)
+    cart_product_form = CartAddProductForm()
 
-    context = {'product': product}
+    context = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'customer/dashboard/detail.html', context)
 
 def paymentPage(request):

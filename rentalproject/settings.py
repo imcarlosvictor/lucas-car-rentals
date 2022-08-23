@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rentalapp',
+    'cart',
     # 'rentalapp.apps.RentalappConfig',
 ]
 
@@ -129,3 +130,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Media images
 # MEDIA_URL = '/images/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'rentalapp/')
+
+# Sessions
+CART_SESSION_ID = 'cart'

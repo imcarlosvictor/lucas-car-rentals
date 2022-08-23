@@ -1,0 +1,55 @@
+{% extends "customer/base.html" %}
+{% load static %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="shopping-cart">
+	<h1>Your shopping cart</h1>
+		<table class="table cart">
+			<thead>
+				<tr>
+					<th>Image</th>
+					<th>Product</th>
+					<th>Quantity</th>
+					<th>Remove</th>
+					<th>Unit Price</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				{% for item in cart %}
+					{% with product=item.product %}
+					<tr>
+						<td>
+								<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "media/img/icon-no-image.svg" %}{% endif %}" id="shopping-cart-image">
+						</td>
+						<td><a href="{{ product.get_absolute_url }}">{{ product.model }}</a></td>
+						<td>{{ item.quantity }}</td>
+						<td>
+							<form action="{% url "cart:cart_remove" product.id %}" method="post">
+								<input type="submit" value="Remove">
+								{% csrf_token %}
+							</form>
+						</td>
+						<td class="num">${{ item.price }}</td>
+						<td class="num">${{ item.total_price }}</td>
+					</tr>
+					{% endwith %}
+				{% endfor %}
+				<tr class="total">
+					<td>Total</td>
+					<td colspan="4"></td>
+					<td class="num">${{ cart.get_total_price }}</td>
+				</tr>
+			</tbody>
+		</table>
+		<p class="text-right">
+			<a href="{% url "rentalapp:products" %}" class="buttonlight">Continue shopping</a>
+			<a href="#" class="button">Checkout</a>
+		</p>
+	</div>
+</div>
+{% endblock %}

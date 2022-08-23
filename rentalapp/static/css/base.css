@@ -324,3 +324,20 @@ input {
   fort-style: italics;
   color: var(--grey);
 }
+
+
+/* ---------------------------------------------------------------------------------------- */
+/* Shopping Cart */
+/* ---------------------------------------------------------------------------------------- */
+.shopping-cart {
+  width: 100%;
+  color: var(--white);
+}
+
+#shopping-cart-image {
+  max-width: 400px;
+}
+
+.table > .cart {
+  border: none;
+}
