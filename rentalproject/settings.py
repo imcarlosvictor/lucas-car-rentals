@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rentalapp',
     'cart',
+    'orders.apps.OrdersConfig',
     # 'rentalapp.apps.RentalappConfig',
 ]
 
