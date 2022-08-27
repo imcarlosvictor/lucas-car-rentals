@@ -27,7 +27,7 @@
 				<td>{{ product.color }}</td>
 				<td>{{ product.capacity }}</td>
 				<td>{{ product.fuel_type }}</td>
-				<td>{{ product.available }}</td>
+				<td><span {% if product.available %}class="available-prod"{% else %}class="unavailable-prod"{% endif %}>{{ product.available }}</span></td>
 				<td>{{ product.price }}</td>
 			</tr>
 		{% endfor %}
