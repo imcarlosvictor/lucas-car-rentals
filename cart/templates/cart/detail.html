@@ -6,9 +6,9 @@
 {% block content %}
 <div class="content">
 	<div class="shopping-cart">
-	<h1>Your shopping cart</h1>
+		<h1>Your shopping cart</h1>
 		<table class="table cart">
-			<thead>
+			<thead class="table-head">
 				<tr>
 					<th>Image</th>
 					<th>Product</th>
@@ -47,8 +47,8 @@
 			</tbody>
 		</table>
 		<p class="text-right">
-			<a href="{% url "rentalapp:products" %}" class="buttonlight continue-btn cart-btn">Continue shopping</a>
-			<a href="#" class="button checkout-btn cart-btn">Checkout</a>
+			<a href="{% url "rentalapp:products" %}" class="buttonlight continue-btn">Continue shopping</a>
+			<a href="{% url "orders:order_create" %}" class="button checkout-btn cart-btn">Checkout</a>
 		</p>
 	</div>
 </div>

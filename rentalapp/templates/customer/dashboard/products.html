@@ -7,7 +7,7 @@
 <div class="content">
 	<p class="section-title">Rentals</p>
 	<table class="table table-hover">
-		<thead>
+		<thead class="table-head">
 			<tr>
 				<th class="th">Model</th>
 				<th class="th">Brand</th>
@@ -22,7 +22,7 @@
 		<tbody>
 		{% for product in products %}
 			<tr class="product" data-href="{{product.get_absolute_url}}">
-				<td>{{ product.model }}</a></td>
+				<td>{{ product.model }}</td>
 				<td>{{ product.brand }}</td>
 				<td>{{ product.color }}</td>
 				<td>{{ product.capacity }}</td>
