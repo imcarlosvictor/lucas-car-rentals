@@ -212,10 +212,10 @@ input {
 #add-cta {
   margin-top: 1.2em;
   padding: 1em;
-  border: 1px solid var(--dark-green);
   border-radius: 3px;
+  border: none;
+  background-color: var(--dark-green);
   font-size: 15px;
-  background-color: var(--darkgrey);
   color: var(--white);
 }
 
@@ -402,6 +402,10 @@ input {
   font-weight: bold;
 }
 
+.total > #total-text {
+  text-align: center;
+}
+
 .cart-btn {
   background-color: var(--dark-green);
   border-radius: 2px;
@@ -538,4 +542,11 @@ input {
   font-size: 16px;
   font-weight: bold;
   color: var(--dark-green);
+}
+
+/* ---------------------------------------------------------------------------------------- */
+/* ORDER COMPLETED */ 
+/* ---------------------------------------------------------------------------------------- */
+.order-complete {
+  color: var(--white);
 }

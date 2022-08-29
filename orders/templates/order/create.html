@@ -6,7 +6,7 @@
 	<p class="title">Checkout</p>
 	<div class="order">
 		<div class="order-checkout">
-			<form method="POST" class="checkout-form">
+			<form method="POST" class="checkout-form" id="checkout-form">
 				{% csrf_token %}
 				{% for field in form %}
 					{{ field }}
