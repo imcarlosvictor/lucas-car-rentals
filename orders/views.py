@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
+from .tasks import order_created
 
 
 # Create your views here.
@@ -15,6 +17,8 @@ def order_create(request):
             for item in cart:
                 OrderItem.objects.create(order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
             cart.clear()
+            # launch asynchronous task with delay()
+            order_created.delay(order.id)
 
             context = {'order': order}
             return render(request, 'order/created.html', context)
@@ -22,5 +26,10 @@ def order_create(request):
     else:
         form = OrderCreateForm()
 
-    context = {'cart': cart, 'form': form}
-    return render(request, 'order/create.html', context)
+    # context = {'cart': cart, 'form': form}
+    # return render(request, 'order/create.html', context)
+
+    order_created.delay(order.id)
+    request.session['order_id'] = order.id
+    # redirect payments
+    return redirect(reverse('payment:process'))

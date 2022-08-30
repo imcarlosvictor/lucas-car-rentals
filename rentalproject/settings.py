@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-
+import braintree
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'rentalapp',
     'cart',
     'orders',
-    # 'rentalapp.apps.RentalappConfig',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +135,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'rentalapp/')
 
 # Sessions
 CART_SESSION_ID = 'cart'
+
+# Braintree settings
+BRAINTREE_MERCHANT_ID = 'wzg3z7r2k8rswq5b'
+BRAINTREE_PUBLIC_KEY = 'y9qm4k3jtz9rxgdp'
+BRAINTREE_PRIVATE_KEY = 'e5e053550df6dce75ec5fa4bf69a5b66'
+BRAINTREE_CONF = braintree.Configuration(
+    braintree.Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PUBLIC_KEY,
+    BRAINTREE_PRIVATE_KEY,
+)
