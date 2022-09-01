@@ -123,6 +123,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'rentalapp/static'),
+    os.path.join(BASE_DIR, 'orders/static'),
+    os.path.join(BASE_DIR, 'payment/static'),
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -137,12 +142,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'rentalapp/')
 CART_SESSION_ID = 'cart'
 
 # Braintree settings
-BRAINTREE_MERCHANT_ID = 'wzg3z7r2k8rswq5b'
-BRAINTREE_PUBLIC_KEY = 'y9qm4k3jtz9rxgdp'
-BRAINTREE_PRIVATE_KEY = 'e5e053550df6dce75ec5fa4bf69a5b66'
+BRAINTREE_MERCHANT_ID = 'rtjzcvwrvgvq56vj'
+BRAINTREE_PUBLIC_KEY = 'mzr8hg79djhzrg5k'
+BRAINTREE_PRIVATE_KEY = 'bb10251f2cc370ec93a03fdfab832fa8'
 BRAINTREE_CONF = braintree.Configuration(
     braintree.Environment.Sandbox,
     BRAINTREE_MERCHANT_ID,
     BRAINTREE_PUBLIC_KEY,
     BRAINTREE_PRIVATE_KEY,
 )
+
+# Email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

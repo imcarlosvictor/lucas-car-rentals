@@ -15,21 +15,23 @@ def order_create(request):
         if form.is_valid():
             order = form.save()
             for item in cart:
-                OrderItem.objects.create(order=order, product=item['product'], price=item['price'], quantity=item['quantity'])
+                OrderItem.objects.create(
+                    order=order, 
+                    product=item['product'], 
+                    price=item['price'], 
+                    quantity=item['quantity']
+                )
+
             cart.clear()
             # launch asynchronous task with delay()
             order_created.delay(order.id)
-
-            context = {'order': order}
-            return render(request, 'order/created.html', context)
+            # set the order in the session
+            request.session['order_id'] = order.id
+            # redirect for payment
+            return redirect(reverse('payment:process'))
 
     else:
         form = OrderCreateForm()
 
-    # context = {'cart': cart, 'form': form}
-    # return render(request, 'order/create.html', context)
-
-    order_created.delay(order.id)
-    request.session['order_id'] = order.id
-    # redirect payments
-    return redirect(reverse('payment:process'))
+    context = {'cart': cart, 'form': form}
+    return render(request, 'order/create.html', context)

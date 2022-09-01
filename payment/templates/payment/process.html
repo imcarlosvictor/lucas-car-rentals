@@ -1,0 +1,105 @@
+{% extends "customer/base.html" %}
+{% load static %}
+
+{% block title %}Pay by credit card{% endblock %}
+
+{% block content %}
+<div class="content">
+	<div class="payment-content">
+		<h1>Pay by credit card</h1>
+		<form id="payment" method="POST">
+			<label for="card-number">Card Number</label>
+			<div id="card-number" class="field"></div>
+
+			<label for="cvv">CVV</label>
+			<div id="cvv" class="field"></div>
+
+			<label for="expiration-date">Expiration Date</label>
+			<div id="expiration-date" class="field"></div>
+
+			<input type="hidden" id="nonce" name="payment_method_nonce" value="">
+			{% csrf_token %}
+			<input id="payment-button" type="submit" value="Pay" disabled >
+		</form>
+</div>
+
+<!-- Load the required client component. -->
+<script src="https://js.braintreegateway.com/web/3.87.0/js/client.min.js"></script>
+<script src="https://js.braintreegateway.com/web/3.87.0/js/hosted-fields.min.js"></script>
+<!-- includes jQuery -->
+<script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+
+<!-- Load additional components when required. -->
+
+<!-- Use the components. We'll see usage instructions next. -->
+<script>
+	var form = document.querySelector('#payment');
+	var submit = document.querySelector('input[type="submit"]');
+
+	braintree.client.create({
+		authorization: {{ client_token }} 
+	}, function (clientErr, clientInstance) {
+		if (clientErr) {
+			console.error(clientErr);
+			return;
+		}
+
+		// This example shows Hosted Fields, but you can also use this
+		// client instance to create additional components here, such as
+		// PayPal or Data Collector.
+
+		braintree.hostedFields.create({
+			client: clientInstance,
+			styles: {
+				'input': {
+					'font-size': '14px'
+				},
+				'input.invalid': {
+					'color': 'red'
+				},
+				'input.valid': {
+					'color': 'green'
+				}
+			},
+			fields: {
+				number: {
+					container: '#card-number',
+					placeholder: '4111 1111 1111 1111'
+				},
+				cvv: {
+					container: '#cvv',
+					placeholder: '123'
+				},
+				expirationDate: {
+					container: '#expiration-date',
+					placeholder: '10/2022'
+				}
+			}
+		}, function (hostedFieldsErr, hostedFieldsInstance) {
+			if (hostedFieldsErr) {
+				console.error(hostedFieldsErr);
+				return;
+			}
+
+			submit.removeAttribute('disabled');
+
+			form.addEventListener('submit', function (event) {
+				event.preventDefault();
+
+				hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
+					if (tokenizeErr) {
+						console.error(tokenizeErr);
+						return;
+					}
+
+					// set nonce to send to the server
+					document.getElementById("nonce").value = payload.nonce;
+					// submit form
+					document.getElementById("payment").submit();
+
+				});
+			}, false);
+		});
+	});
+</script>
+{% endblock %}

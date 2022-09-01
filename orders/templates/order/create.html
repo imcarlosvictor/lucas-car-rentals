@@ -1,4 +1,6 @@
 {% extends "customer/base.html" %}
+{% load static %}
+
 {% block title %}Checkout{% endblock %}
 
 {% block content %}
@@ -31,4 +33,5 @@
 	</div>
 </div>
 
+<script src="{% static "js/checkout_form.js" %}"></script>
 {% endblock %}
