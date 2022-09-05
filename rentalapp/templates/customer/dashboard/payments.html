@@ -12,6 +12,7 @@
 			</div>
 			<div class="payment-form">
 				<form>
+					{% csrf_token %}
 					<input type="text" class="input-form" placeholder="Card Number">
 					<div class="input-same-line">
 						<input type="text" class="input-form input-left" placeholder="CCV">

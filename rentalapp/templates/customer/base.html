@@ -1,83 +1,85 @@
 {% load static %}
 <!DOCTYPE HTML>
 <html>
-<meta charset="UTF-8">
-<link rel="stylesheet" href="{% static "css/base.css" %}">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-<title>Bootstrap 101 Template</title>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static "css/base.css" %}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Bootstrap 101 Template</title>
 
-<!-- Bootstrap -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
-  integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+      integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-		<script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
-	<![endif]-->
+    <!-- Braintree -->
+    <!-- includes the Braintree JS client SDK -->
+    <script src="https://js.braintreegateway.com/web/3.87.0/js/client.min.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.87.0/js/hosted-fields.min.js"></script>
+    <!-- includes jQuery -->
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+  </head>
+
+  <body id="body">
+    <nav class="navbar navbar-default navbar-inverse" id="nav">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header"> 
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" id="brand" href="{% url 'rentalapp:products' %}">Lucas Rental</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'rentalapp:products' %}">Rent <span class="sr-only">(current)</span></a></li>
+            <li><a href="{% url 'rentalapp:payments' %}">Payments</a></li>
+            <li><a href="{% url 'rentalapp:billing' %}">Order History</a></li>
+            <li><a href="{% url 'rentalapp:profile' %}">Profile</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <!-- <li><a href="{% url 'rentalapp:logout' %}">Logout</a></li> -->
+            {% with total_items=cart|length %}
+              {% if total_items > 0 %}
+              <a href="{% url "cart:cart_detail" %}" class="notification">
+                <span>Cart</span>
+                <span class="badge">{{ total_items }}</span>
+              </a>
+              {% else %}
+              <a href="{% url "cart:cart_detail" %}" class="notification">
+                <span>Cart</span>
+              </a> 
+              {% endif %}
+            {% endwith %}
+          </ul>
+          
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div>
+      {% block content %}
+      {% endblock %}
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{% static "js/table.js" %}"></script>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+      integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+      crossorigin="anonymous"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
+      integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+      crossorigin="anonymous"></script>
+
+  </body>
 </html>
-
-<body id="body">
-  <nav class="navbar navbar-default navbar-inverse" id="nav">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header"> 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" id="brand" href="{% url 'rentalapp:products' %}">Lucas Rental</a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li><a href="{% url 'rentalapp:products' %}">Rent <span class="sr-only">(current)</span></a></li>
-          <li><a href="{% url 'rentalapp:payments' %}">Payments</a></li>
-          <li><a href="{% url 'rentalapp:billing' %}">Order History</a></li>
-          <li><a href="{% url 'rentalapp:profile' %}">Profile</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <!-- <li><a href="{% url 'rentalapp:logout' %}">Logout</a></li> -->
-          {% with total_items=cart|length %}
-            {% if total_items > 0 %}
-            <a href="{% url "cart:cart_detail" %}" class="notification">
-              <span>Cart</span>
-              <span class="badge">{{ total_items }}</span>
-            </a>
-            {% else %}
-            <a href="{% url "cart:cart_detail" %}" class="notification">
-              <span>Cart</span>
-            </a> 
-            {% endif %}
-          {% endwith %}
-        </ul>
-        
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
-
-  <div>
-    {% block content %}
-    {% endblock %}
-  </div>
-
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-  <script src="{% static "js/table.js" %}"></script>
-
-  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"
-    integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
-    crossorigin="anonymous"></script>
-  <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"
-    integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
-    crossorigin="anonymous"></script>
-
-</body>

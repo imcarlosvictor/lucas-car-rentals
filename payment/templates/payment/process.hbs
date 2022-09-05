@@ -4,22 +4,23 @@
 {% block title %}Pay by credit card{% endblock %}
 
 {% block content %}
-<div class="content">
-	<form action="/checkout" id="hosted-fields-form" method="post" class="checkout-form">
-		{% csrf_token %}
-		<label for="card-number">Card Number</label>
-		<div id="card-number"></div>
+	<div class="content">
+		<form action="/checkout" id="hosted-fields-form" method="post">
+			<label for="card-number">Card Number</label>
+			<div id="card-number"></div>
 
-		<label for="cvv">CVV</label>
-		<div id="cvv"></div>
+			<label for="cvv">CVV</label>
+			<div id="cvv"></div>
 
-		<label for="expiration-date">Expiration Date</label>
-		<div id="expiration-date"></div>
+			<label for="expiration-date">Expiration Date</label>
+			<div id="expiration-date"></div>
 
-		<div id="checkout-message"></div>
+			<div id="checkout-message"></div>
 
-		<input id="payment-button" type="submit" value="Pay" disabled />
-	</form>
+			<input id="payment-button" type="submit" value="Pay" disabled />
+		</form>
+		<div id="paypal-button"></div>
+	</div>
 
 	<script>
 		var form = document.querySelector('#hosted-fields-form');
@@ -27,7 +28,7 @@
 
 		braintree.client.create({
 			// Insert your tokenization key here
-			authorization: '{{ client_token }}'
+			authorization: '{{ client_key }}'
 		}, function (clientErr, clientInstance) {
 			if (clientErr) {
 				console.error(clientErr);
@@ -106,16 +107,13 @@
 								}
 							});
 
-							if (result.success) {
-								$('#checkout-message').html('<h1>Success</h1><p>Your Hosted Fields form is working! Check your <a href="https://sandbox.braintreegateway.com/login">sandbox Control Panel</a> for your test transactions.</p><p>Refresh to try another transaction.</p>');
-							} else {
-								$('#checkout-message').html('<h1>Error</h1><p>Check your console.</p>');
-							}
-						});
+							// set nonce to send to the server
+							document.getElementById('nonce').value = payload.nonce;
+							// submit form
+							document.getElementById('payment').submit();
 					});
 				}, false);
 			});
 		});
 	</script>
-</div>
 {% endblock %}
