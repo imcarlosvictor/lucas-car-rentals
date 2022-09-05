@@ -19,6 +19,8 @@
     <script src="https://js.braintreegateway.com/web/3.87.0/js/hosted-fields.min.js"></script>
     <!-- includes jQuery -->
     <script src="http://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <!-- Braintree Drop-In UI -->
+    <script src="https://js.braintreegateway.com/web/dropin/1.33.4/js/dropin.min.js"></script>
   </head>
 
   <body id="body">
@@ -40,7 +42,7 @@
           <ul class="nav navbar-nav">
             <li><a href="{% url 'rentalapp:products' %}">Rent <span class="sr-only">(current)</span></a></li>
             <li><a href="{% url 'rentalapp:payments' %}">Payments</a></li>
-            <li><a href="{% url 'rentalapp:billing' %}">Order History</a></li>
+            <li><a href="{% url 'rentalapp:billing' %}">Invoices</a></li>
             <li><a href="{% url 'rentalapp:profile' %}">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">

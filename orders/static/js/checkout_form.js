@@ -1,4 +1,4 @@
-var form_fields = document.querySelector(".checkout-form").getElementsByTagName("input");
+var form_fields = document.querySelector(".user-info-form").getElementsByTagName("input");
 form_fields[1].placeholder = "First Name";
 form_fields[2].placeholder = "Last Name";
 form_fields[3].placeholder = "Email";

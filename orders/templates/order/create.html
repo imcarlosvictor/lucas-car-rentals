@@ -8,17 +8,16 @@
 	<p class="title">Checkout</p>
 	<div class="order">
 		<div class="order-checkout">
-			<form method="POST" class="checkout-form" id="checkout-form">
+			<form method="POST" class="user-info-form" id="user-info-form">
 				{% csrf_token %}
 				{% for field in form %}
 					{{ field }}
 				{% endfor %}
-				<input type="submit" value="Place order" id="place-order-btn">
+				<input type="submit" value="Save" id="place-order-btn">
 			</form>
 		</div>
-
 		<div class="checkout-summary-card">
-			<h3>Order Items</h3>
+			<h3>Order Summary</h3>
 			<div class="order-item-list">
 				<ol class="checkout-summary">
 					{% for item in cart %}
@@ -31,7 +30,32 @@
 			<p id="checkout-total">Total: ${{ cart.get_total_price }}</p>
 		</div>
 	</div>
+	<div class="checkout-payment-container">
+		<div id="dropin-container"></div>
+		<button id="submit-button">Purchase</button>
+	</div>
+
 </div>
 
+
 <script src="{% static "js/checkout_form.js" %}"></script>
+<script>
+	var button = document.querySelector('#submit-button');
+
+	braintree.dropin.create({
+		authorization: '{{ client_token }}',
+		container: '#dropin-container',
+		paypal: {
+			flow: 'checkout',
+			amount: '{{ cart.get_total_price }}',
+			currency: 'CAD'
+		}
+	}, function (createErr, instance) {
+		button.addEventListener('click', function () {
+			instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
+				// Submit payload.nonce to your server
+			});
+		});
+	});
+</script>
 {% endblock %}
