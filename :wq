@@ -10,13 +10,13 @@ class OrderItemInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     list_display = [
-        'id',
-        'firstname',
-        'lastname',
-        'email',
-        'address',
-        'postal_code',
-        'city',
+        'get_user_id',
+        'get_firstname',
+        'get_lastname',
+        'get_email',
+        'get_address',
+        'get_postal_code',
+        'get_city',
         'paid',
         'created',
         'updated',

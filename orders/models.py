@@ -1,6 +1,6 @@
 from django.db import models
 
-from rentalapp.models import Product
+from rentalapp.models import Product, MyUser
 
 # Create your models here.
 class Order(models.Model):

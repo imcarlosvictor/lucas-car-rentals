@@ -10,8 +10,8 @@ from .forms import OrderCreateForm
 
 
 gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
-# Create your views here.
 
+# Create your views here.
 def order_create(request):
     cart = Cart(request)
     order_id = request.session.get('order_id')
@@ -30,6 +30,7 @@ def order_create(request):
             }
         })
 
+        # User information form
         if form.is_valid():
             order = form.save()
             for item in cart:
@@ -47,6 +48,7 @@ def order_create(request):
             request.session['order_id'] = order.id
             # redirect for payment
 
+            # Braintree API Form
             if result.is_success:
                 # mark the order as paid
                 order.paid = True
@@ -63,3 +65,10 @@ def order_create(request):
     client_token = gateway.client_token.generate()
     context = {'cart': cart, 'form': form, 'client_token': client_token}
     return render(request, 'order/create.html', context)
+
+
+def order_done(request):
+    return render(request, 'order/done.html')
+
+def order_cancelled(request):
+    return render(request, 'order/cancelled.html')

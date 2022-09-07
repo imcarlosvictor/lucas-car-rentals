@@ -5,30 +5,57 @@
 
 {% block content %}
 <div class="content">
-	<p class="section-title">Settings</p>
+	<p class="section-title">Profile Settings</p>
 	<div class="content-cards">
+
 		<div class="profile-card-container">
 			<div class="payment-form">
 				<form>
 					<div class="input-same-line">
-						<input type="text" class="input-form input-left" placeholder="First Name">
-						<input type="text" class="input-form input-right" placeholder="Last Name">
+						<label>First name</label>
+						<input type="text" class="input-form input-left" placeholder="first">
 					</div>
-					<input type="text" class="input-form input-full" placeholder="Email">
+
 					<div class="input-same-line">
+						<label>Last name</label>
+						<input type="text" class="input-form input-left" placeholder="lastname">
+					</div>
+
+					<div class="input-same-line">
+						<label>Email</label>
+						<input type="text" class="input-form input-left" placeholder="email">
+					</div>
+
+					<div class="input-same-line">
+						<label>Date of Birth</label>
 						<input type="text" class="input-form input-left" placeholder="Date of Birth">
-						<input type="text" class="input-form input-right" placeholder="Phone">
 					</div>
-					<input type="text" class="input-form input-full" placeholder="Street Address">
+
 					<div class="input-same-line">
-						<input type="text" class="input-form input-left" placeholder="City">
-						<input type="text" class="input-form input-right" placeholder="Postal Code">
+						<label>Mobile</label>
+						<input type="text" class="input-form input-left" placeholder="Mobile">
 					</div>
+
+					<div class="input-same-line">
+						<label>Address</label>
+						<input type="text" class="input-form input-left" placeholder="Address">
+					</div>
+
+					<div class="input-same-line">
+						<label>City</label>
+						<input type="text" class="input-form input-left" placeholder="City">
+					</div>
+
+					<div class="input-same-line">
+						<label>Postal Code</label>
+						<input type="text" class="input-form input-left" placeholder="Postal Code">
+					</div>
+
 					<button type="button" id="add-cta">Save Changes</button>
+
 				</form>
 			</div>
 		</div>
-
 	</div>
 </div>
 {% endblock %}

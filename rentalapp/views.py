@@ -7,6 +7,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 from .forms import UserCreationForm
 from cart.forms import CartAddProductForm
+from rentalapp.models import MyUser
 
 
 # Create your views here.
@@ -82,5 +83,7 @@ def billingPage(request):
     return render(request, 'customer/dashboard/billing.html')
 
 def profilePage(request):
-    context = {}
-    return render(request, 'customer/dashboard/profile.html')
+    user = request.user
+
+    context = {'user': user}
+    return render(request, 'customer/dashboard/profile.html', context)

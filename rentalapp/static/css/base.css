@@ -8,7 +8,7 @@
   --pink: #ea80fc;
   --blue: #4aa0ef;
   --red: #ff5656;
-  --green: #249225;
+  --green: #0bf446;
   --dark-green: #008678;
   --darkgrey: #1e1e1e;
   --black1: #1b1f24;
@@ -154,6 +154,9 @@ th {
   border-radius: 4px;
 }
 
+.profile-card-container {
+  padding-top: 3em;
+}
 .headers {
   background: var(--darkgrey);
   color: var(--white);
@@ -172,7 +175,6 @@ th {
   margin-top: 1em;
   padding: 1em 3em 2em 3em;
 }
-
 
 .card-list-options {
   display: flex;
@@ -204,8 +206,9 @@ th {
 }
 
 .input-same-line {
-  display: flex;
+  display: flexbox;
   justify-content: space-between;
+  margin-top: .5em;
 }
 
 input {
@@ -485,9 +488,9 @@ input {
   padding-left: 5em;
 }
 
-#submit-button {
+.checkout-payment-container > #submit-button {
   margin-top: 1.2em;
-  background-color: var(--dark-green);
+  background-color: var(--blue);
 }
 
 .order {
@@ -642,3 +645,29 @@ input {
 #payment-button:hover {
   color: rgba(254,254,254, 0.7);
 }
+
+/* ---------------------------------------------------------------------------------------- */
+/* Order Done */
+/* ---------------------------------------------------------------------------------------- */
+.order-done, .order-cancelled {
+  color: var(--white);
+}
+
+.order-done > button, .order-cancelled > button{
+  background-color: var(--dark-green);
+  border: none;
+  border-radius: 2px;
+  padding: 1em;
+  margin-top: 1em;
+}
+
+.order-done > button > a, .order-cancelled > button > a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+
+
+/* ---------------------------------------------------------------------------------------- */
+/* Order Done */
+/* ---------------------------------------------------------------------------------------- */
