@@ -4,15 +4,17 @@ from rentalapp.models import Product, MyUser
 
 # Create your models here.
 class Order(models.Model):
-    firstname = models.CharField(max_length=50)
-    lastname = models.CharField(max_length=50)
-    email = models.EmailField()
-    address = models.CharField(max_length=250)
-    postal_code = models.CharField(max_length=20)
-    city = models.CharField(max_length=100)
+    firstname = models.CharField(max_length=50, blank=True)
+    lastname = models.CharField(max_length=50, blank=True)
+    email = models.EmailField(max_length=100, blank=True, null=False)
+    address = models.CharField(max_length=300, blank=True)
+    country = models.CharField(max_length=200, blank=True)
+    province = models.CharField(max_length=200, blank=True)
+    city = models.CharField(max_length=200, blank=True)
+    postal_code = models.CharField(max_length=200, blank=True)
+    paid = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    paid = models.BooleanField(default=False)
 
     class Meta:
         ordering = ('-created',)

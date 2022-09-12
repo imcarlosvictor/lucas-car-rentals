@@ -34,7 +34,7 @@ def payment_process(request):
         # generate token
         client_token = gateway.client_token.generate()
         context = {'order': order, 'client_token': client_token}
-        return render(request, 'payment/process.html', context)
+        return render(request, 'payment/p.html', context)
 
 def payment_done(request):
     return render(request, 'payment/done.html')

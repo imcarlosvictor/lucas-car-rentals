@@ -1,7 +1,7 @@
 from django import forms
 
 from .models import Order
-from rentalapp.models import BillingAddress
+from rentalapp.models import MyUser
 
 
 # class OrderCreateForm(forms.ModelForm):
@@ -11,5 +11,5 @@ from rentalapp.models import BillingAddress
 
 class OrderCreateForm(forms.ModelForm):
     class Meta:
-        model = BillingAddress
-        fields = ['address',  'country', 'province', 'city', 'postal_code']
+        model = Order
+        fields = ['firstname', 'lastname', 'email', 'address',  'country', 'province', 'city', 'postal_code']

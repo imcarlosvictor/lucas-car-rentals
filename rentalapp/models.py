@@ -40,22 +40,13 @@ class CustomUserManager(BaseUserManager):
         return self._create_user(email, password, firstname, lastname, mobile, **extra_fields)
 
 
-class BillingAddress(models.Model):
-    address = models.CharField(max_length=300, blank=True)
-    country = models.CharField(max_length=200, blank=True)
-    province = models.CharField(max_length=200, blank=True)
-    city = models.CharField(max_length=200, blank=True)
-    postal_code = models.CharField(max_length=200, blank=True)
-
-
 class MyUser(AbstractBaseUser, PermissionsMixin):
     user_id = models.AutoField(primary_key=True)
     email = models.EmailField(max_length=200, unique=True)
     password = models.CharField(max_length=200)
     firstname = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
-    mobile = models.IntegerField(blank=True)
-    billing = models.ForeignKey(BillingAddress, on_delete=models.CASCADE)
+    mobile = models.IntegerField(blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
@@ -71,6 +62,15 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = 'MyUser'
         verbose_name_plural = 'MyUsers'
+
+
+# class BillingAddress(models.Model):
+#     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
+#     address = models.CharField(max_length=300, blank=True)
+#     country = models.CharField(max_length=200, blank=True)
+#     province = models.CharField(max_length=200, blank=True)
+#     city = models.CharField(max_length=200, blank=True)
+#     postal_code = models.CharField(max_length=200, blank=True)
 
 
 class Category(models.Model):

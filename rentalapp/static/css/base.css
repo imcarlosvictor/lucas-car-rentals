@@ -629,7 +629,7 @@ input {
 }
 
 #card-number.braintree-hosted-fields-valid, #cvv.braintree-hosted-fields-valid, #expiration-date.braintree-hosted-fields-valid {
-  border: 2px solid var(--green);
+  border: 2px solid #046a38;
 }
 
 #payment-button {
@@ -665,8 +665,6 @@ input {
   color: var(--white);
   text-decoration: none;
 }
-
-
 
 /* ---------------------------------------------------------------------------------------- */
 /* Order Done */

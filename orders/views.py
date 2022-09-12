@@ -14,23 +14,8 @@ gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
 # Create your views here.
 def order_create(request):
     cart = Cart(request)
-    order_id = request.session.get('order_id')
-    order = get_object_or_404(Order, id=order_id)
-    total_cost = order.get_total_cost()
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
-        # retrieve nonce
-        nonce = request.POST.get('payment_method_nonce', None)
-        # create and submit transaction
-        result = gateway.transaction.sale ({
-            'amount': f'{total_cost:.2f}',
-            'payment_method_nonce': nonce,
-            'options': {
-                'submit_for_settlement': True,
-            }
-        })
-
-        # User information form
         if form.is_valid():
             order = form.save()
             for item in cart:
@@ -40,35 +25,17 @@ def order_create(request):
                     price=item['price'], 
                     quantity=item['quantity']
                 )
-
+            # clear cart
             cart.clear()
-            # launch asynchronous task with delay()
+            # launch asynchronous task 
             order_created.delay(order.id)
             # set the order in the session
             request.session['order_id'] = order.id
             # redirect for payment
-
-            # Braintree API Form
-            if result.is_success:
-                # mark the order as paid
-                order.paid = True
-                # store the unique transaction id
-                order.braintree_id = result.transaction.id
-                order.save()
-                return redirect('order:done')
-            else:
-                return redirect('order:cancelled')
-
+            return redirect(reverse('payment:process'))
     else:
         form = OrderCreateForm()
 
     client_token = gateway.client_token.generate()
     context = {'cart': cart, 'form': form, 'client_token': client_token}
     return render(request, 'order/create.html', context)
-
-
-def order_done(request):
-    return render(request, 'order/done.html')
-
-def order_cancelled(request):
-    return render(request, 'order/cancelled.html')

@@ -46,7 +46,7 @@
             <li><a href="{% url 'rentalapp:profile' %}">Profile</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <!-- <li><a href="{% url 'rentalapp:logout' %}">Logout</a></li> -->
+            <li><a href="{% url 'rentalapp:logout' %}">Logout</a></li>
             {% with total_items=cart|length %}
               {% if total_items > 0 %}
               <a href="{% url "cart:cart_detail" %}" class="notification">

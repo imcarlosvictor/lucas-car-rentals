@@ -1,6 +1,7 @@
 from django.contrib import admin
 
 from .models import Order, OrderItem
+from rentalapp.models import MyUser
 
 # Register your models here.
 class OrderItemInline(admin.TabularInline):
@@ -14,6 +15,7 @@ class OrderAdmin(admin.ModelAdmin):
         'firstname',
         'lastname',
         'email',
+        'country',
         'address',
         'postal_code',
         'city',
