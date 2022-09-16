@@ -1,4 +1,4 @@
-import braintree
+import braintree, stripe
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from orders.models import Order
@@ -27,17 +27,50 @@ def payment_process(request):
             # store the unique transaction id
             order.braintree_id = result.transaction.id
             order.save()
-            return redirect('payment:done')
+            return redirect('payment:checkout')
         else:
             return redirect('payment:cancelled')
     else:
         # generate token
         client_token = gateway.client_token.generate()
         context = {'order': order, 'client_token': client_token}
-        return render(request, 'payment/p.html', context)
+        return render(request, 'payment/process.html', context)
 
 def payment_done(request):
     return render(request, 'payment/done.html')
 
 def payment_cancelled(request):
     return render(request, 'payment/cancelled.html')
+
+def payment_checkout(request):
+    return render(request, 'payment/checkout.html')
+
+
+
+# This is your test secret API key.
+stripe.api_key = 'sk_test_51LhNbNBGZyNiyiqHLHFvN0Eucgo7IWOQcT33pjpIQ4CQd14nOvqHCJVCsT0aOfRVWQnDV5fd7tGSTTksVADAarlj00GdR1hI4l'
+
+def checkout_session(request):
+    order_id = request.session.get('order_id')
+    order = get_object_or_404(Order, id=order_id)
+    total_cost = order.get_total_cost()
+    # item_quantity = order.quantity()
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price': order_id,
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url='http://127.0.0.1:8000/payment/success/',
+            cancel_url='http://127.0.0.1:8000/payment/cancelled/',
+        )
+    except Exception as e:
+        return str(e)
+
+    return render(request, 'payment/checkout1.html')
+
+def checkout_success(request):
+    return render(request, 'payment/success.html')

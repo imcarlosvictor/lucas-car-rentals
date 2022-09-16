@@ -87,3 +87,6 @@ def profilePage(request):
 
     context = {'user': user}
     return render(request, 'customer/dashboard/profile.html', context)
+
+def checkoutPage(request):
+    return render(request, 'customer/dashboard/checkout.html')
