@@ -29,33 +29,8 @@
 			</div>
 			<p id="checkout-total">Total: ${{ cart.get_total_price }}</p>
 		</div>
-	</div>
-	<div class="checkout-payment-container">
-		<div id="dropin-container"></div>
-		<button id="submit-button">Purchase</button>
-	</div>
-
 </div>
 
 
 <script src="{% static "js/checkout_form.js" %}"></script>
-<script>
-	var button = document.querySelector('#submit-button');
-
-	braintree.dropin.create({
-		authorization: '{{ client_token }}',
-		container: '#dropin-container',
-		paypal: {
-			flow: 'checkout',
-			amount: '{{ cart.get_total_price }}',
-			currency: 'CAD'
-		}
-	}, function (createErr, instance) {
-		button.addEventListener('click', function () {
-			instance.requestPaymentMethod(function (requestPaymentMethodErr, payload) {
-				// Submit payload.nonce to your server
-			});
-		});
-	});
-</script>
 {% endblock %}
