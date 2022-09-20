@@ -8,7 +8,6 @@ from cart.cart import Cart
 gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
 
 def payment_process(request):
-    cart = Cart(request)
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     total_cost = order.get_total_cost()
@@ -29,7 +28,6 @@ def payment_process(request):
             # store the unique transaction id
             order.braintree_id = result.transaction.id
             order.save()
-            cart.clear()
             return redirect('payment:checkout')
         else:
             return redirect('payment:cancelled')
@@ -74,6 +72,9 @@ def create_checkout_session(request):
         )
     except Exception as e:
         return str(e)
+
+    order.paid = True
+    order.save()
 
     return redirect(checkout_session.url)
 
