@@ -11,9 +11,7 @@ urlpatterns = [
     # Create a page that lists all products under the same category or stick with table database page
     path('products/', views.productPage, name='products'),
     path('products/<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
-    path('payments/', views.paymentPage, name='payments'),
     path('billing/', views.billingPage, name='billing'),
     path('profile/', views.profilePage, name='profile'),
-    path('checkout', views.checkoutPage, name='checkout'),
     path('', views.registerPage, name='register'),
 ]

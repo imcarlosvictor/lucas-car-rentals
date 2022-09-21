@@ -74,13 +74,9 @@ def product_detail(request, id, slug):
     context = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'customer/dashboard/detail.html', context)
 
-def paymentPage(request):
-    context = {}
-    return render(request, 'customer/dashboard/payments.html')
-
 def billingPage(request):
     context = {}
-    return render(request, 'customer/dashboard/billing.html')
+    return render(request, 'customer/dashboard/invoices.html')
 
 def profilePage(request):
     user = request.user
@@ -88,5 +84,3 @@ def profilePage(request):
     context = {'user': user}
     return render(request, 'customer/dashboard/profile.html', context)
 
-def checkoutPage(request):
-    return render(request, 'customer/dashboard/checkout.html')

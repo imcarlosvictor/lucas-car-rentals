@@ -57,24 +57,28 @@ def create_checkout_session(request):
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     total_cost = order.get_total_cost()
-    # item_quantity = order.quantity()
+    total_cost_to_int = int(total_cost) * 100
+
     try:
         checkout_session = stripe.checkout.Session.create(
-            line_items=[
-                {
-                    'price': 'price_1LiufpBGZyNiyiqH0LDOPKYx',
-                    'quantity': 1,
+            line_items=[{
+                'price_data': {
+                    'currency': 'cad',
+                    'product_data': {
+                        'name': 'T-shirt',
+                    },
+                    'unit_amount': total_cost_to_int,
                 },
-            ],
+                'quantity': 1,
+            }],
             mode='payment',
             success_url= DOMAIN + 'payment/success/',
             cancel_url= DOMAIN + 'payment/cancelled/',
         )
+        order.paid = True
+        order.save()
     except Exception as e:
         return str(e)
-
-    order.paid = True
-    order.save()
 
     return redirect(checkout_session.url)
 

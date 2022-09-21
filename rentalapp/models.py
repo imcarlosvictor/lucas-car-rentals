@@ -64,15 +64,6 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = 'MyUsers'
 
 
-# class BillingAddress(models.Model):
-#     user = models.ForeignKey(MyUser, on_delete=models.CASCADE, null=True)
-#     address = models.CharField(max_length=300, blank=True)
-#     country = models.CharField(max_length=200, blank=True)
-#     province = models.CharField(max_length=200, blank=True)
-#     city = models.CharField(max_length=200, blank=True)
-#     postal_code = models.CharField(max_length=200, blank=True)
-
-
 class Category(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -104,6 +95,7 @@ class Product(models.Model):
     image = models.ImageField(upload_to='static/media/images/', blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=20, decimal_places=2)
+    price_id = models.CharField(max_length=200, default='')
     capacity = models.CharField(max_length=200)
     fuel_type = models.CharField(max_length=20, choices=FUEL_TYPE_CHOICES)
     available = models.BooleanField(default=True)
