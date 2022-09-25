@@ -1,15 +1,15 @@
-import braintree
+import weasyprint
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
+from django.template.loader import render_to_string
 from cart.cart import Cart
 from .models import Order, OrderItem
 from .tasks import order_created
 from .forms import OrderCreateForm
 
-
-gateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)
 
 # Create your views here.
 def order_create(request):
@@ -37,6 +37,24 @@ def order_create(request):
     else:
         form = OrderCreateForm()
 
-    client_token = gateway.client_token.generate()
-    context = {'cart': cart, 'form': form, 'client_token': client_token}
+    context = {'cart': cart, 'form': form}
     return render(request, 'order/create.html', context)
+
+def invoice_page(request):
+    context = {}
+    return render(request, 'order/invoices.html', context)
+
+def invoice_detail(request):
+    pass
+
+def create_invoice(request):
+    pass
+
+def admin_order_pdf(request, order_id):
+    order = get_object_or_404(Order, id=order_id)
+    html = render_to_string('order/pdf.html', {'order': order})
+    response = HttpResponse(content_type='applicaiton/pdf')
+    response['Content-Disposition'] = f'filename=order_{order.id}.pdf'
+    weasyprint.HTML(string=html).write_pdf(response,stylesheets=[weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')])
+
+    return response

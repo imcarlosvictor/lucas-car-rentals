@@ -5,4 +5,5 @@ from . import views
 app_name = 'orders'
 urlpatterns = [
     path('create/', views.order_create, name='order_create'),
+    path('invoices/', views.invoice_page, name='invoice'),
 ]
