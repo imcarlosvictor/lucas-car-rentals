@@ -43,3 +43,19 @@ class OrderItem(models.Model):
 
     def get_price_id(self):
         return price_id
+
+class Invoice(models.Model):
+    STATUS_CHOICE = (
+        ('Paid', 'Paid'),
+        ('Pending', 'Pending')
+    )
+    slug = models.SlugField(max_length=200)
+    transaction_id = models.IntegerField(primary_key=True)
+    transaction_date = models.DateTimeField()
+    customer = models.CharField(max_length=200)
+    rental = models.CharField(max_length=200)
+    amount = models.IntegerField()
+    paid = models.BooleanField()
+
+    def __str__(self):
+        return 'Transaction ID:' + str(self.transaction_id)

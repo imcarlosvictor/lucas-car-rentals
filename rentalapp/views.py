@@ -32,7 +32,7 @@ def loginPage(request):
         user = authenticate(request, email=email, password=password)
         if user is not None:
             login(request, user)
-            return redirect('rentalapp:products')
+            return redirect('rentalapp:rentals')
         else:
             messages.error(request, 'Email or password is incorrect')
             return render(request, 'customer/accounts/login.html')
@@ -44,7 +44,7 @@ def logoutUser(request):
     logout(request)
     return redirect('rentalapp:login')
 
-def productPage(request, category_slug=None):
+def rentalsPage(request, category_slug=None):
     category = None
     categories = Category.objects.all()
     product_list = Product.objects.all()
@@ -65,7 +65,7 @@ def productPage(request, category_slug=None):
         products = paginator.get_page(paginator.num_pages)
 
     context = {'category': category, 'categories': categories, 'products': products}
-    return render(request, 'customer/dashboard/products.html', context)
+    return render(request, 'customer/dashboard/rentals.html', context)
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, id=id, slug=slug)
@@ -73,10 +73,6 @@ def product_detail(request, id, slug):
 
     context = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'customer/dashboard/detail.html', context)
-
-def billingPage(request):
-    context = {}
-    return render(request, 'customer/dashboard/invoices.html')
 
 def profilePage(request):
     user = request.user

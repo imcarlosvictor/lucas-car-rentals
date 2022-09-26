@@ -95,7 +95,6 @@ class Product(models.Model):
     image = models.ImageField(upload_to='static/media/images/', blank=True)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=20, decimal_places=2)
-    price_id = models.CharField(max_length=200, default='')
     capacity = models.CharField(max_length=200)
     fuel_type = models.CharField(max_length=20, choices=FUEL_TYPE_CHOICES)
     available = models.BooleanField(default=True)
@@ -110,7 +109,7 @@ class Product(models.Model):
         return self.brand + " " + self.model
 
     def get_absolute_url(self):
-        return reverse('rentalapp:product_detail', kwargs={'id': self.id, 'slug': self.slug})
+        return reverse('rentalapp:rental_detail', kwargs={'id': self.id, 'slug': self.slug})
 
 
 class Rent(models.Model):

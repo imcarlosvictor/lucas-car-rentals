@@ -8,7 +8,7 @@
   --pink: #ea80fc;
   --blue: #4aa0ef;
   --red: #ff5656;
-  --green: #0bf446;
+  --green: #2afd7f;
   --dark-green: #008678;
   --darkgrey: #1e1e1e;
   --black1: #1b1f24;
@@ -86,26 +86,22 @@ th {
   text-align: center;
 }
 
-.product, .billing-items{
+.product, .invoice-item {
   background-color: var(--black);
   color: var(--lightgrey);
   transition: ease .3s;
 }
 
-.product td {
+.product td, .invoice-item td {
   border-bottom: 1px solid var(--darkgrey);
 }
 
-.billing-items {
-  transition: ease .3s;
-}
-
-.product:hover, .billing-items:hover {
+.product:hover, .invoice-item:hover {
   cursor: pointer;
   color: var(--black);
 }
 
-.product td {
+.product td, .invoice-item td {
   text-align: center;
 }
 
@@ -574,64 +570,8 @@ input {
 }
 
 /* ---------------------------------------------------------------------------------------- */
-/* ORDER COMPLETED */ 
-/* ---------------------------------------------------------------------------------------- */
-.order-complete {
-  color: var(--white);
-}
-
-/* ---------------------------------------------------------------------------------------- */
 /* PAYMENT */
 /* ---------------------------------------------------------------------------------------- */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.checkout-form {
-  color: var(--white);
-  width: 40%;
-}
-
-.checkout-form label {
-  margin-top: 1em;
-}
-
-.checkout-form div {
-  padding-left: .8em;
-}
-
-#card-number, #cvv, #expiration-date {
-  height: 2.5em;
-  border: 1px solid #333;
-  border-radius: 3px;
-  background-color: var(--white);
-  -webkit-transition: border-color 160ms;
-  transition: border-color 160ms;
-}
-
-#card-number.braintree-hosted-fields-focused, #cvv.braintree-hosted-fields-focused, #expiration-date.braintree-hosted-fields-focused {
-  border: 2px solid var(--blue);
-}
-
-#card-number.braintree-hosted-fields-invalid, #cvv.braintree-hosted-fields-invalid, #expiration-date.braintree-hosted-fields-invalid {
-  border: 2px solid var(--red);
-}
-
-#card-number.braintree-hosted-fields-valid, #cvv.braintree-hosted-fields-valid, #expiration-date.braintree-hosted-fields-valid {
-  border: 2px solid #046a38;
-}
-
 #payment-button {
   min-width: 100px;
   max-width: 100px;
@@ -667,5 +607,8 @@ input {
 }
 
 /* ---------------------------------------------------------------------------------------- */
-/* Order Done */
+/* ORDER COMPLETED/CANCELLED */ 
 /* ---------------------------------------------------------------------------------------- */
+.order-complete, .order-cancelled {
+  color: var(--white);
+}

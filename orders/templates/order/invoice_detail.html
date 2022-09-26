@@ -7,28 +7,54 @@
 
 {% block content %}
 <div class="content">
-	<div class="product-detail-content">
-		<img src="{% if product.image %}{{product.image.url}}{% else %}{% static "media/images/icon-no-image.svg" %}{% endif %}" class="product-img">
-		<div class="product-view">
-			<div class="product-header">
-				<p class="product-model">{{product.brand}} {{product.model}}</p>
-			</div>
-			<p class="product-price">${{product.price}}</p>
-			<form action="{% url "cart:cart_add" product.id %}" method="POST">
-				{{ cart_product_form }}
-				{% csrf_token %}
-			<button type="submit" {% if product.available %}id="available-btn"{% else %}id="unavailable-btn"{% endif %}>{% if product.available %}Rent{% else %}Unavailable{% endif %}</button>
-				<!-- <input type="submit" value="Add to cart"> -->
-			</form>
-			<p class="product-description">{{ product.description|linebreaks }}</p>
-			<ul class="product-details">
-				<li><span class="detail">Model:</span> {{product.model}}</li>
-				<li><span class="detail">Manufacturer:</span> {{product.brand}}</li>
-				<li><span class="detail">Color:</span> {{product.color}}</li>
-				<li><span class="detail">Capacity:</span> {{product.capacity}}</li>
-				<li><span class="detail">Fuel Type:</span> {{product.fuel_type}}</li>
+		<p>Invoice #</p>
+		<p></p>
+		<div class="invoice-customer-details">
+			<h1>Bill To:</h1>
+			<ul class="user-details">
+				<li class="detail">{{ user.firstname }} {{ user.lastname }}</li>
+				<li class="detail">{{ user.email }}</li>
+				<li class="detail">{{ user.mobile }}</li>
+				<li class="detail">{{ user.address }}</li>
 			</ul>
 		</div>
-	</div>
+		<div class="invoice-rented-items">
+			<div class="shopping-cart">
+				<h1>Items bought</h1>
+				<table class="table cart">
+					<thead class="table-head">
+						<tr>
+							<th>Image</th>
+							<th>Product</th>
+							<th>Brand</th>
+							<th>Quantity</th>
+							<th>Unit Price</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for item in cart %}
+							{% with product=item.product %}
+								<tr>
+									<td>
+										<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "media/img/icon-no-image.svg" %}{% endif %}" id="shopping-cart-image">
+									</td>
+									<td><a href="{{ product.get_absolute_url }}" class="product-url">{{ product.model }}</a></td>
+									<td>{{ item.brand }}</td>
+									<td>{{ item.quantity }}</td>
+									<td>
+										<form action="{% url "cart:cart_remove" product.id %}" method="post">
+											<input type="submit" value="Remove" class="remove-btn">
+											{% csrf_token %}
+										</form>
+									</td>
+									<td class="num">{{ item.price }}</td>
+								</tr>
+							{% endwith %}
+						{% endfor %}
+					</tbody>
+				</table>	
+			</div>
+		</div>
+
 </div>
 {% endblock %}

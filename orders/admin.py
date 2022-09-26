@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Order, OrderItem
+from .models import Order, OrderItem, Invoice
 from rentalapp.models import MyUser
 
 # Register your models here.
@@ -26,3 +26,16 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter = ['paid', 'created', 'updated']
     inlines = [OrderItemInline]
 
+
+@admin.register(Invoice)
+class InvoiceAdmin(admin.ModelAdmin):
+    list_display = [
+        'transaction_id',
+        'transaction_date',
+        'customer',
+        'rental',
+        'amount',
+        'paid',
+    ]
+    list_filter = ['paid']
+    prepopulated_fields = {'slug':('transaction_id',)}

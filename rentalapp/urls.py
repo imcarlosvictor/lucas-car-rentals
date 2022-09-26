@@ -9,9 +9,8 @@ urlpatterns = [
     path('logout/', views.logoutUser, name='logout'),
 
     # Create a page that lists all products under the same category or stick with table database page
-    path('products/', views.productPage, name='products'),
-    path('products/<int:id>/<slug:slug>/', views.product_detail, name='product_detail'),
-    path('billing/', views.billingPage, name='billing'),
+    path('rentals/', views.rentalsPage, name='rentals'),
+    path('rentals/<int:id>/<slug:slug>/', views.product_detail, name='rental_detail'),
     path('profile/', views.profilePage, name='profile'),
     path('', views.registerPage, name='register'),
 ]

@@ -141,16 +141,5 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'rentalapp/')
 # Sessions
 CART_SESSION_ID = 'cart'
 
-# Braintree settings
-BRAINTREE_MERCHANT_ID = 'rtjzcvwrvgvq56vj'
-BRAINTREE_PUBLIC_KEY = 'mzr8hg79djhzrg5k'
-BRAINTREE_PRIVATE_KEY = 'bb10251f2cc370ec93a03fdfab832fa8'
-BRAINTREE_CONF = braintree.Configuration(
-    braintree.Environment.Sandbox,
-    BRAINTREE_MERCHANT_ID,
-    BRAINTREE_PUBLIC_KEY,
-    BRAINTREE_PRIVATE_KEY,
-)
-
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

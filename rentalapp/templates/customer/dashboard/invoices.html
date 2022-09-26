@@ -7,16 +7,19 @@
 <div class="content">
 	<p class="section-title">Invoices</p>
 	<table class="table table-hover">
-		<tr>
-			<th class="th">Id</th>
-			<th class="th">Transaction Date</th>
-			<th class="th">Customer Name</th>
-			<th class="th">Car</th>
-			<th class="th">Pickup Date</th>
-			<th class="th">Return Date</th>
-			<th class="th">Amount</th>
-			<th class="th">Status</th>
-		</tr>
+		<thead class="table-head">
+			<tr>
+				<th class="th">Id</th>
+				<th class="th">Transaction Date</th>
+				<th class="th">Customer Name</th>
+				<th class="th">Car</th>
+				<th class="th">Pickup Date</th>
+				<th class="th">Return Date</th>
+				<th class="th">Amount</th>
+				<th class="th">Status</th>
+			</tr>
+		</thead>
+
 
 		<!-- {% for product in products %} -->
 		<!-- 	<tr class="billing-items"> -->
@@ -30,24 +33,16 @@
 		<!-- 	</tr> -->
 		<!-- {% endfor %} -->
 		
-		<tr>
-			<td>123019</td>
-			<td>07/03/22</td>
-			<td>Lucas Torres</td>
-			<td>Tucson</td>
-			<td>07/13/22</td>
-			<td>08/15/22</td>
-			<td>$500.00</td>
-			<td>Active</td>
-		</tr>
-		<tr>
-			<td>128509</td>
-			<td>06/03/22</td>
-			<td>Lucas Torres</td>
-			<td>Journey</td>
-			<td>06/13/22</td>
-			<td>07/15/22</td>
-			<td>$500.00</td>
-			<td>Closed</td>
-		</tr>
+		<tbody>
+			<tr class="product">
+				<td>123019</td>
+				<td>07/03/22</td>
+				<td>Lucas Torres</td>
+				<td>Tucson</td>
+				<td>07/13/22</td>
+				<td>08/15/22</td>
+				<td>$500.00</td>
+				<td>Active</td>
+			</tr>
+		</tbody>
 {% endblock %}

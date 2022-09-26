@@ -17,14 +17,16 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="invoice-item">
-					<td>123643</td>
-					<td>07/03/22</td>
-					<td>Lucas Torres</td>
-					<td>Hyundai Tucson</td>
-					<td>200</td>
-					<td>Paid</td>
-				</tr>
+				{% for invoice in invoices %}
+					<tr class="invoice-item">
+						<td>{{ invoice.transaction_id }}</td>
+						<td>{{ invoice.transaction_date }}</td>
+						<td>{{ invoice.customer }}</td>
+						<td>{{ invoice.rental }}</td>
+						<td>{{ invoice.amount }}</td>
+						<td>{{ invoice.paid }}</td>
+					</tr>
+				{% endfor %}
 			</tbody>
 		</table>
 	</div>
