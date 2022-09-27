@@ -33,7 +33,6 @@ class InvoiceAdmin(admin.ModelAdmin):
         'transaction_id',
         'transaction_date',
         'customer',
-        'rental',
         'amount',
         'paid',
     ]

@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 from rentalapp.models import Product, MyUser
 
@@ -28,6 +29,9 @@ class Order(models.Model):
     def get_price_ids(self):
         return [item.get_price_id() for item in self.items.all()]
 
+    def get_product(self):
+        return [item.product() for item in self.items.all()]
+
 
 class OrderItem(models.Model):
     order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
@@ -44,6 +48,7 @@ class OrderItem(models.Model):
     def get_price_id(self):
         return price_id
 
+
 class Invoice(models.Model):
     STATUS_CHOICE = (
         ('Paid', 'Paid'),
@@ -51,11 +56,15 @@ class Invoice(models.Model):
     )
     slug = models.SlugField(max_length=200)
     transaction_id = models.IntegerField(primary_key=True)
-    transaction_date = models.DateTimeField()
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE, null=True, blank=True)
+    transaction_date = models.DateTimeField(auto_now_add=True)
     customer = models.CharField(max_length=200)
-    rental = models.CharField(max_length=200)
-    amount = models.IntegerField()
+    amount = models.FloatField()
     paid = models.BooleanField()
 
+    class Meta:
+        index_together = (('transaction_id', 'slug'))
+
     def __str__(self):
-        return 'Transaction ID:' + str(self.transaction_id)
+        return 'Transaction ID: ' + str(self.transaction_id)
+

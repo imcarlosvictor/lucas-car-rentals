@@ -110,21 +110,3 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         return reverse('rentalapp:rental_detail', kwargs={'id': self.id, 'slug': self.slug})
-
-
-class Rent(models.Model):
-    RENTAL_STATUS_CHOICES = (
-        ('Active', 'Active'),
-        ('Inactive', 'Inactive'),
-    )
-    rental_id = models.AutoField(primary_key=True)
-    slug = models.SlugField(max_length=200)
-    pickup_date = models.DateField()
-    return_date = models.DateField()
-    user_id = models.ForeignKey('MyUser', on_delete=models.CASCADE)
-    vehicle_id = models.ForeignKey('Product', on_delete=models.CASCADE)
-    rental_amount = models.DecimalField(max_digits=9, decimal_places=2)
-    rental_status = models.CharField(max_length=20, choices=RENTAL_STATUS_CHOICES)
-
-    def __str__(self):
-        return 'Transaction ID: ' + transaction_id

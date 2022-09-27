@@ -21,7 +21,7 @@
 
 		<tbody>
 		{% for product in products %}
-			<tr class="product" data-href="{{product.get_absolute_url}}">
+			<tr class="product" data-href="{{ product.get_absolute_url }}">
 				<td>{{ product.model }}</td>
 				<td>{{ product.brand }}</td>
 				<td>{{ product.color }}</td>

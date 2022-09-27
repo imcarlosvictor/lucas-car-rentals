@@ -22,8 +22,3 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ['available', 'brand', 'capacity', 'fuel_type', 'price']
     prepopulated_fields = {'slug': ('model',)}
 
-@admin.register(Rent)
-class RentAdmin(admin.ModelAdmin):
-    list_display = ['rental_id', 'slug', 'pickup_date', 'return_date', 'user_id', 'vehicle_id', 'rental_amount', 'rental_status']
-    # prepopulated_field = {'slug': ('rental_id',)}
-

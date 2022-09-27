@@ -1,8 +1,9 @@
 import braintree, stripe
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
-from orders.models import Order
+from orders.models import Order, OrderItem
 from cart.cart import Cart
+from orders.models import Invoice
 
 
 # STRIPE
@@ -44,6 +45,22 @@ def checkout_success(request):
     session, order = build_checkout_session(request)
     order.paid = True
     order.save()
+
+    # Get invoice data
+    order_id = request.session.get('order_id')
+    customer_name = request.user.firstname + ' ' + request.user.lastname
+    customer_name_formatted = customer_name.title()
+    total_cost = int(order.get_total_cost())
+    rentals = order.get_product()
+    # Create instance
+    Invoice.objects.create(
+        slug=order_id,
+        transaction_id=order_id,
+        customer=customer_name_formatted,
+        amount=total_cost,
+        paid=order.paid
+    )
+
     return render(request, 'payment/success.html')
 
 def checkout_cancelled(request):
