@@ -28,8 +28,6 @@ def order_create(request):
                     price=item['price'], 
                     quantity=item['quantity']
                 )
-                # Store product id to change availability later on
-                request.session['product_id'] = item['id']
 
             # clear cart
             cart.clear()
@@ -37,6 +35,11 @@ def order_create(request):
             order_created.delay(order.id)
             # set the order in the session
             request.session['order_id'] = order.id
+            # store product id to change availability later on
+            list_length = range(0, len(cart))
+            list_ids = [ item['id'] for item in cart ]
+            dict_ids = dict(zip(list_length, list_ids))
+            request.session['product_ids'] = dict_ids
             # redirect for payment
             return redirect(reverse('payment:checkout'))
     else:

@@ -25,7 +25,7 @@ def build_checkout_session(request):
             'price_data': {
                 'currency': 'cad',
                 'product_data': {
-                    'name': 'T-shirt',
+                    'name': 'Cars',
                 },
                 'unit_amount': total_cost_to_int,
             },
@@ -64,10 +64,11 @@ def checkout_success(request):
     )
 
     # Change product availability
-    product_id = request.session.get('product_id')
-    rented_product = Product.objects.get(id=product_id)
-    rented_product.available = False
-    rented_product.save()
+    product_ids = request.session.get('product_ids')
+    for product_id in product_ids.values():
+        rented_product = Product.objects.get(id=product_id)
+        rented_product.available = False
+        rented_product.save()
 
     return render(request, 'payment/success.html')
 
