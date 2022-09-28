@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.template.loader import render_to_string
 from cart.cart import Cart
+from rentalapp.models import Product
 from .models import Order, OrderItem, Invoice
 from .tasks import order_created
 from .forms import OrderCreateForm
@@ -27,6 +28,9 @@ def order_create(request):
                     price=item['price'], 
                     quantity=item['quantity']
                 )
+                # Store product id to change availability later on
+                request.session['product_id'] = item['id']
+
             # clear cart
             cart.clear()
             # launch asynchronous task 

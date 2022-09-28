@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from .models import *
-from .forms import UserCreationForm
+from .forms import UserCreationForm, UserChangeForm
 from cart.forms import CartAddProductForm
 from rentalapp.models import MyUser
 
@@ -76,6 +76,10 @@ def rentalDetail(request, id, slug):
 
 def profilePage(request):
     user = request.user
+    form = UserChangeForm(request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
 
     context = {'user': user}
     return render(request, 'customer/dashboard/profile.html', context)

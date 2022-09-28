@@ -1,6 +1,7 @@
 import braintree, stripe
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
+from rentalapp.models import Product
 from orders.models import Order, OrderItem
 from cart.cart import Cart
 from orders.models import Invoice
@@ -50,16 +51,23 @@ def checkout_success(request):
     order_id = request.session.get('order_id')
     customer_name = request.user.firstname + ' ' + request.user.lastname
     customer_name_formatted = customer_name.title()
+    customer_email = request.user.email
     total_cost = int(order.get_total_cost())
-    rentals = order.get_product()
     # Create instance
     Invoice.objects.create(
         slug=order_id,
         transaction_id=order_id,
         customer=customer_name_formatted,
+        email=customer_email,
         amount=total_cost,
         paid=order.paid
     )
+
+    # Change product availability
+    product_id = request.session.get('product_id')
+    rented_product = Product.objects.get(id=product_id)
+    rented_product.available = False
+    rented_product.save()
 
     return render(request, 'payment/success.html')
 

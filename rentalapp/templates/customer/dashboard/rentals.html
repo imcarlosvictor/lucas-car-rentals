@@ -14,8 +14,8 @@
 				<th class="th">Color</th>
 				<th class="th">Capacity</th>
 				<th class="th">Fuel Type</th>
-				<th class="th">Available</th>
 				<th class="th">Price</th>
+				<th class="th">Available</th>
 			</tr>
 		</thead>
 
@@ -27,8 +27,8 @@
 				<td>{{ product.color }}</td>
 				<td>{{ product.capacity }}</td>
 				<td>{{ product.fuel_type }}</td>
+				<td>${{ product.price }}</td>
 				<td><span {% if product.available %}class="available-prod"{% else %}class="unavailable-prod"{% endif %}>{{ product.available }}</span></td>
-				<td>{{ product.price }}</td>
 			</tr>
 		{% endfor %}
 		</tbody>

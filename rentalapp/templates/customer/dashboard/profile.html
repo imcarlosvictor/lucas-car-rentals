@@ -10,49 +10,29 @@
 
 		<div class="profile-card-container">
 			<div class="payment-form">
-				<form>
+				<form method="POST">
+					{% csrf_token %}
 					<div class="input-same-line">
 						<label>First name</label>
-						<input type="text" class="input-form input-left" placeholder="">
+						<input type="text" class="input-form input-left" placeholder="{{ user.firstname|title }}">
 					</div>
 
 					<div class="input-same-line">
 						<label>Last name</label>
-						<input type="text" class="input-form input-left" placeholder="lastname">
+						<input type="text" class="input-form input-left" placeholder="{{ user.lastname|title }}">
 					</div>
 
 					<div class="input-same-line">
 						<label>Email</label>
-						<input type="text" class="input-form input-left" placeholder="email">
-					</div>
-
-					<div class="input-same-line">
-						<label>Date of Birth</label>
-						<input type="text" class="input-form input-left" placeholder="Date of Birth">
+						<input type="text" class="input-form input-left" placeholder="{{ user.email }}">
 					</div>
 
 					<div class="input-same-line">
 						<label>Mobile</label>
-						<input type="text" class="input-form input-left" placeholder="Mobile">
+						<input type="text" class="input-form input-left" placeholder="{{ user.mobile }}">
 					</div>
 
-					<div class="input-same-line">
-						<label>Address</label>
-						<input type="text" class="input-form input-left" placeholder="{{ user.billing.address }}">
-					</div>
-
-					<div class="input-same-line">
-						<label>City</label>
-						<input type="text" class="input-form input-left" placeholder="City">
-					</div>
-
-					<div class="input-same-line">
-						<label>Postal Code</label>
-						<input type="text" class="input-form input-left" placeholder="Postal Code">
-					</div>
-
-					<button type="button" id="add-cta">Save Changes</button>
-
+					<input type="submit" id="add-cta" value="Save Changes">
 				</form>
 			</div>
 		</div>

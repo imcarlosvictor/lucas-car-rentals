@@ -17,7 +17,7 @@
 			<form action="{% url "cart:cart_add" product.id %}" method="POST">
 				{{ cart_product_form }}
 				{% csrf_token %}
-			<button type="submit" {% if product.available %}id="available-btn"{% else %}id="unavailable-btn"{% endif %}>{% if product.available %}Rent{% else %}Unavailable{% endif %}</button>
+			<button type="submit" {% if product.available %}id="available-btn"{% else %}id="unavailable-btn" disabled{% endif %}>{% if product.available %}Rent{% else %}Unavailable{% endif %}</button>
 				<!-- <input type="submit" value="Add to cart"> -->
 			</form>
 			<p class="product-description">{{ product.description|linebreaks }}</p>

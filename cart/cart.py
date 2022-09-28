@@ -20,7 +20,7 @@ class Cart(object):
 
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id] = {'quantity': 1, 'price': str(product.price)}
+            self.cart[product_id] = {'quantity': 1, 'price': str(product.price), 'id': product_id}
         self.save()
 
     def save(self):
@@ -43,6 +43,7 @@ class Cart(object):
         products = Product.objects.filter(id__in=product_ids)
         cart = self.cart.copy()
         for product in products:
+            cart[str(product.id)]['id'] = product.id
             cart[str(product.id)]['product'] = product
             cart[str(product.id)]['brand'] = product.brand
         for item in cart.values():
