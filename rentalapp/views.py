@@ -7,7 +7,6 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import *
 from .forms import UserCreationForm, UserChangeForm
 from cart.forms import CartAddProductForm
-from rentalapp.models import MyUser
 
 
 # Create your views here.
@@ -41,6 +40,12 @@ def loginPage(request):
     return render(request, 'customer/accounts/login.html')
 
 def logoutUser(request):
+    # Change the availability of the products for new customers
+    product_list = Product.objects.all()
+    for product in product_list:
+        product.available = True
+        product.save()
+    
     logout(request)
     return redirect('rentalapp:login')
 

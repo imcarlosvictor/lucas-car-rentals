@@ -151,8 +151,9 @@ th {
 }
 
 .profile-card-container {
-  padding-top: 3em;
+  padding-top: 2em;
 }
+
 .headers {
   background: var(--darkgrey);
   color: var(--white);
@@ -160,6 +161,25 @@ th {
   height: 30%;
   padding: 1.5em 2em 1.5em 3em;
   border-radius: 4px;
+}
+
+.logout-card {
+  margin-top: 2em;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+#logout-btn {
+  background: var(--dark-green);
+  color: var(--white);
+  text-decoration: none;
+  text-align: center;
+  border-radius: 3px;
+  padding: 1em;
+  width: 40%;
+  height: 50%;
 }
 
 .payment-accept-card p {
