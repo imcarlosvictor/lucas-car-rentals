@@ -1,5 +1,4 @@
 import random
-import weasyprint
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.conf import settings

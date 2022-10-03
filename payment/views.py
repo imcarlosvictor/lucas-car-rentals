@@ -1,4 +1,4 @@
-import braintree, stripe
+import stripe
 from django.shortcuts import render, redirect, get_object_or_404
 from django.conf import settings
 from rentalapp.models import Product

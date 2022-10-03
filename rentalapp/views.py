@@ -45,7 +45,7 @@ def logoutUser(request):
     for product in product_list:
         product.available = True
         product.save()
-    
+
     logout(request)
     return redirect('rentalapp:login')
 

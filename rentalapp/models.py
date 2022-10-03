@@ -46,7 +46,7 @@ class MyUser(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=200)
     firstname = models.CharField(max_length=200)
     lastname = models.CharField(max_length=200)
-    mobile = models.IntegerField(blank=True, null=True)
+    mobile = models.CharField(max_length=200, blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
