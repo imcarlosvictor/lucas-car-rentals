@@ -1,1 +1,1 @@
-web: gunicorn lucascarrentals.wsgi --log-file -
+web: gunicorn app.wsgi

@@ -21,12 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-kcywxqu8*nfxlr)*r7bu(gjnid(x$-dnvcsm9jt+*@ufpnv#up'
-CSRF_TRUSTED_ORIGINS = ['https://protected-plains-37561.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://lucascarrentals.herokuapp.com/']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['protected-plains-37561.herokuapp.com']
+ALLOWED_HOSTS = ['lucascarrentals.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
