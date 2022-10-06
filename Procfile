@@ -1,1 +1,1 @@
-web: gunicorn lucascarrentals.wsgi 
+web: gunicorn rentalproject.wsgi 
