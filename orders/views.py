@@ -31,7 +31,7 @@ def order_create(request):
             subject = 'LucasCarRentals Your order was received'
             message = '|            Product            |            Quantity            |            Price            |\n'
             sender = 'noreply@lucascarrentals.com'
-            recipient = [form.cleaned_data['email']]
+            recipient = form.cleaned_data['email']
 
             for item in cart:
                 OrderItem.objects.create(
@@ -43,7 +43,7 @@ def order_create(request):
                 # Add order items in a tabular format
                 message += f'|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n'
 
-            send_mail(subject, message, sender, recipient, fail_silently=False)
+            send_mail(subject, message, sender, [recipient], fail_silently=False)
 
             cart.clear()
             # Launch asynchronous task 
