@@ -156,3 +156,6 @@ EMAIL_HOST_USER = 'imcvlucas@gmail.com'
 EMAIL_HOST_PASSWORD = 'zbjtwtmipgeuobyd'
 EMAIL_USE_TLS = True
 
+# CELERY
+CELERY_BROKER_URL = ''
+CELERY_RESULT_BACKEND = ''
