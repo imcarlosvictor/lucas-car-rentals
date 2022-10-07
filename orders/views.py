@@ -41,7 +41,7 @@ def order_create(request):
                     quantity=item['quantity']
                 )
                 # Add order items in a tabular format
-                message += f'|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n'
+                message += f"|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n"
 
             send_mail(subject, message, sender, [recipient], fail_silently=False)
 
