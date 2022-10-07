@@ -4,7 +4,9 @@ from django.urls import reverse
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
+from django.core.mail import send_mail
 from django.template.loader import render_to_string
+
 from cart.cart import Cart
 from rentalapp.models import Product
 from .models import Order, OrderItem, Invoice
@@ -15,11 +17,22 @@ from rentalapp.models import MyUser
 
 # Create your views here.
 def order_create(request):
+    """
+    Displays the order summary and prompts the user to fill out a shipping address form. An email is then send
+    to the user the user.
+    """
+
     cart = Cart(request)
     if request.method == 'POST':
         form = OrderCreateForm(request.POST)
         if form.is_valid():
             order = form.save()
+            # Format and store mail info
+            subject = 'LucasCarRentals Your order was received'
+            message = '|            Product            |            Quantity            |            Price            |\n'
+            sender = 'noreply@lucascarrentals.com'
+            recipient = [form.cleaned_data['email']]
+
             for item in cart:
                 OrderItem.objects.create(
                     order=order, 
@@ -27,19 +40,23 @@ def order_create(request):
                     price=item['price'], 
                     quantity=item['quantity']
                 )
+                # Add order items in a tabular format
+                message += f'|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n'
 
-            # clear cart
+            send_mail(subject, message, sender, recipient, fail_silently=False)
+
             cart.clear()
-            # launch asynchronous task 
+            # Launch asynchronous task 
             order_created.delay(order.id)
             # set the order in the session
             request.session['order_id'] = order.id
-            # store product id to change availability later on
+            # Store the IDs of the products in the session to change availability
+            # once the payment is successful
             list_length = range(0, len(cart))
             list_ids = [ item['id'] for item in cart ]
             dict_ids = dict(zip(list_length, list_ids))
             request.session['product_ids'] = dict_ids
-            # redirect for payment
+
             return redirect(reverse('payment:checkout'))
     else:
         form = OrderCreateForm()
@@ -48,7 +65,10 @@ def order_create(request):
     return render(request, 'order/create.html', context)
 
 def invoice_page(request):
-    invoices = Invoice.objects.all()
+    """
+    Displays all transactions made by the user, whether it was successful or cancelled.
+    """
 
+    invoices = Invoice.objects.all()
     context = {'invoices': invoices}
     return render(request, 'order/invoices.html', context)

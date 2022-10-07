@@ -15,6 +15,13 @@ DOMAIN = 'http://127.0.0.1:8000/'
 
 # Create your views here.
 def build_checkout_session(request):
+    """Stripe payment API is used to process payment.
+
+    Returns:
+        checkout_session: Stripe checkout session.
+        order: User information and order items.
+    """
+
     order_id = request.session.get('order_id')
     order = get_object_or_404(Order, id=order_id)
     total_cost = order.get_total_cost()
@@ -43,17 +50,22 @@ def checkout_view(request):
     return redirect(session.url)
 
 def checkout_success(request):
+    """Changes availability of products and creates an invoice for the user.
+
+    Returns:
+        Successful payment page 
+    """
+
     session, order = build_checkout_session(request)
     order.paid = True
     order.save()
-
-    # Get invoice data
+    # Store and format data for invoice
     order_id = request.session.get('order_id')
     customer_name = request.user.firstname + ' ' + request.user.lastname
     customer_name_formatted = customer_name.title()
     customer_email = request.user.email
     total_cost = int(order.get_total_cost())
-    # Create instance
+    # Create invoice 
     Invoice.objects.create(
         slug=order_id,
         transaction_id=order_id,
@@ -73,6 +85,12 @@ def checkout_success(request):
     return render(request, 'payment/success.html')
 
 def checkout_cancelled(request):
+    """Marks the order as incomplete.
+
+    Returns:
+        Cancelled payment page
+    """
+
     session, order = build_checkout_session(request)
     order.paid = False
     order.save()
