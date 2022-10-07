@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
 
 from cart.cart import Cart
@@ -29,7 +29,8 @@ def order_create(request):
             order = form.save()
             # Format and store mail info
             subject = 'LucasCarRentals Your order was received'
-            message = '|            Product            |            Quantity            |            Price            |\n'
+            # message = '|            Product            |            Quantity            |            Price            |\n'
+            message = 'Order successfully created'
             sender = 'noreply@lucascarrentals.com'
             recipient = form.cleaned_data['email']
 
@@ -41,9 +42,11 @@ def order_create(request):
                     quantity=item['quantity']
                 )
                 # Add order items in a tabular format
-                message += f"|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n"
+                # message += f"|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n"
 
-            send_mail(subject, message, sender, [recipient], fail_silently=False)
+            email = EmailMessage(subject, message, 'imcvlucas@mail.com', to=[recipient])
+            email.send()
+            # send_mail(subject, message, sender, [recipient], fail_silently=False)
 
             cart.clear()
             # Launch asynchronous task 
