@@ -6,7 +6,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from django.core.mail import send_mail, EmailMessage
 from django.template.loader import render_to_string
-
 from cart.cart import Cart
 from rentalapp.models import Product
 from .models import Order, OrderItem, Invoice
@@ -30,8 +29,7 @@ def order_create(request):
             # Format and store mail info
             subject = 'LucasCarRentals Your order was received'
             # message = '|            Product            |            Quantity            |            Price            |\n'
-            message = 'Order successfully created'
-            sender = 'noreply@lucascarrentals.com'
+            body = 'Order successfully created'
             recipient = form.cleaned_data['email']
 
             for item in cart:
@@ -44,9 +42,15 @@ def order_create(request):
                 # Add order items in a tabular format
                 # message += f"|            {item['product']}            |            {item['quantity']}            |            {item['price']}            |\n"
 
-            email = EmailMessage(subject, message, 'imcvlucas@mail.com', to=[recipient])
+            # Email creation
+            email = EmailMessage(
+                subject,
+                body, 
+                settings.EMAIL_HOST_USER,
+                [recipient],
+            )
+            email.fail_silently = False
             email.send()
-            # send_mail(subject, message, sender, [recipient], fail_silently=False)
 
             cart.clear()
             # Launch asynchronous task 
