@@ -40,18 +40,18 @@ def order_create(request):
                 )
                 # Add order items in a tabular format
 
-            try:
-                # Email creation
-                email = EmailMessage(
-                    subject,
-                    body, 
-                    settings.EMAIL_HOST_USER,
-                    [recipient],
-                )
-                email.fail_silently = False
-                email.send()
-            except OperationalError:
-                print('Connection Refused')
+            # try:
+            #     # Email creation
+            #     email = EmailMessage(
+            #         subject,
+            #         body, 
+            #         settings.EMAIL_HOST_USER,
+            #         [recipient],
+            #     )
+            #     email.fail_silently = False
+            #     email.send()
+            # except OperationalError:
+            #     print('Connection Refused')
 
             cart.clear()
             # Launch asynchronous task 
