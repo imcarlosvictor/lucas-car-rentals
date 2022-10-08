@@ -29,6 +29,7 @@ def order_create(request):
             # Format and store mail info
             subject = 'LucasCarRentals Your order was received'
             body = 'Order successfully created'
+            sender = settings.EMAIL_HOST_USER
             recipient = form.cleaned_data['email']
 
             for item in cart:
@@ -40,18 +41,25 @@ def order_create(request):
                 )
                 # Add order items in a tabular format
 
-            # try:
-            #     # Email creation
-            #     email = EmailMessage(
-            #         subject,
-            #         body, 
-            #         settings.EMAIL_HOST_USER,
-            #         [recipient],
-            #     )
-            #     email.fail_silently = False
-            #     email.send()
-            # except OperationalError:
-            #     print('Connection Refused')
+            try:
+                send_mail(
+                    subject, 
+                    body, 
+                    recipient, 
+                    [recipient],
+                    fail_silently=False,
+                )
+                # # Email creation
+                # email = EmailMessage(
+                #     subject,
+                #     body, 
+                #     settings.EMAIL_HOST_USER,
+                #     [recipient],
+                # )
+                # email.fail_silently = False
+                # email.send()
+            except OperationalError:
+                print('Connection Refused')
 
             cart.clear()
             # # Launch asynchronous task 
