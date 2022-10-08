@@ -149,8 +149,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'rentalapp/')
 CART_SESSION_ID = 'cart'
 
 # CELERY
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_BROKER_URL = 'django-cache'
+# CELERY_RESULT_BACKEND = 'django-db'
+# CELERY_BROKER_URL = 'django-cache'
 CELERY_BROKER_URL = 'amqp://localhost'
 
 CELERY_ACCEPT_CONTENT = ['application/json']
