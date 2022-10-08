@@ -54,8 +54,8 @@ def order_create(request):
             #     print('Connection Refused')
 
             cart.clear()
-            # Launch asynchronous task 
-            order_created.delay(order.id)
+            # # Launch asynchronous task 
+            # order_created.delay(order.id)
             # set the order in the session
             request.session['order_id'] = order.id
             # Store the IDs of the products in the session to change availability
