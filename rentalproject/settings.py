@@ -148,6 +148,16 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'rentalapp/')
 # Sessions
 CART_SESSION_ID = 'cart'
 
+# CELERY
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_URL = 'django-cache'
+CELERY_BROKER_URL = 'amqp://localhost'
+
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Canada/Eastern'
+
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -156,6 +166,3 @@ EMAIL_HOST_USER = 'imcvlucas@gmail.com'
 EMAIL_HOST_PASSWORD = 'zbjtwtmipgeuobyd'
 EMAIL_USE_TLS = True
 
-# CELERY
-CELERY_BROKER_URL = ''
-CELERY_RESULT_BACKEND = ''
