@@ -6,10 +6,10 @@
   --bordergrey: #d9d9d9;
   --black: #131313;
   --pink: #ea80fc;
+  --purple: #a756f5;
   --blue: #4aa0ef;
   --red: #ff5656;
   --green: #2afd7f;
-  --dark-green: #008678;
   --darkgrey: #1e1e1e;
   --black1: #1b1f24;
 }
@@ -49,7 +49,7 @@ body::-webkit-scrollbar {
 #brand {
   padding: .8em 2em;
   font-weight: bold;
-  color: var(--dark-green);
+  color: var(--purple);
 }
 
 .content {
@@ -125,7 +125,7 @@ th {
 
 .pagination-btn {
   padding: .2em .7em;
-  background: var(--dark-green);
+  background: var(--purple);
   color: var(--white);
 }
 /* ---------------------------------------------------------------------------------------- */
@@ -134,7 +134,7 @@ th {
 .progress-bar {
   width: 50%:
   height: 3px;
-  background: var(--dark-green);
+  background: var(--purple);
 }
 
 .content-cards {
@@ -172,7 +172,7 @@ th {
 }
 
 #logout-btn {
-  background: var(--dark-green);
+  background: var(--purple);
   color: var(--white);
   text-decoration: none;
   text-align: center;
@@ -201,7 +201,7 @@ th {
 .cards {
   width: 100px;
   height: 80px;
-  background-color: var(--dark-green);
+  background-color: var(--purple);
   border-radius: 2px;
 }
 
@@ -237,13 +237,13 @@ input {
   padding: 1em;
   border-radius: 3px;
   border: none;
-  background-color: var(--dark-green);
+  background-color: var(--purple);
   font-size: 15px;
   color: var(--white);
 }
 
 #add-cta:hover {
-  background-color: var(--dark-green);
+  background-color: var(--purple);
 }
 
 .payment-options {
@@ -430,7 +430,7 @@ input {
 }
 
 .cart-btn {
-  background-color: var(--dark-green);
+  background-color: var(--purple);
   border-radius: 2px;
   color: var(--white);
   padding: 1em;
@@ -541,7 +541,7 @@ input {
 
 .user-info-form > #place-order-btn, #submit-button {
   color: var(--white);
-  background-color: var(--dark-green);
+  background-color: var(--purple);
   padding: 1em;
   min-width: 70px;
   max-width: 100px;
@@ -596,7 +596,7 @@ input {
   min-width: 100px;
   max-width: 100px;
   padding: 1em;
-  background-color: var(--dark-green);
+  background-color: var(--purple);
   border: none;
   border-radius: 2px;
   margin-top: 1em;
@@ -614,7 +614,7 @@ input {
 }
 
 .order-done > button, .order-cancelled > button{
-  background-color: var(--dark-green);
+  background-color: var(--purple);
   border: none;
   border-radius: 2px;
   padding: 1em;
